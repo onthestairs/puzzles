@@ -1,0 +1,118 @@
+cabal-version:       2.0
+name:                backend
+version:             0.0.0
+synopsis:            See README for more info
+description:         See README for more info
+homepage:            https://github.com/onthestairs/backend
+bug-reports:         https://github.com/onthestairs/backend/issues
+license:             MIT
+license-file:        LICENSE
+author:              Austin
+maintainer:          austinplatt@gmail.com
+copyright:           2019 Austin
+category:            Game
+build-type:          Simple
+extra-doc-files:     README.md
+                   , CHANGELOG.md
+tested-with:         GHC == 8.6.5
+
+source-repository head
+  type:                git
+  location:            https://github.com/onthestairs/backend.git
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Server
+                       Prelude
+
+  build-depends:       base-noprelude >= 4.11.1.0
+                     , relude
+                     , servant-server
+                     , time
+                     , aeson
+                     , aeson-pretty
+                     , wai
+                     , warp
+                     , servant-swagger
+                     , swagger2
+                     , lens
+                     , wai-cors
+                     , text
+                     , polysemy >= 1.2.3.0
+                     , polysemy-zoo >= 0.6.0.1
+                     , polysemy-plugin >= 0.2.4.0
+                     , containers
+
+  ghc-options:         -Wall
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wcompat
+                       -Widentities
+                       -Wredundant-constraints
+                       -fhide-source-paths
+                       -Wmissing-export-lists
+                       -Wpartial-fields
+                       -fplugin=Polysemy.Plugin
+
+  default-language:    Haskell2010
+  default-extensions:    DataKinds
+                       , FlexibleContexts
+                       , GADTs
+                       , LambdaCase
+                       , PolyKinds
+                       , RankNTypes
+                       , ScopedTypeVariables
+                       , TypeApplications
+                       , TypeOperators
+                       , TypeFamilies
+                       , OverloadedStrings
+                       , DeriveGeneric
+
+
+executable backend
+  hs-source-dirs:      app
+  main-is:             Main.hs
+
+  build-depends:       base-noprelude >= 4.11.1.0
+                     , backend
+                     , relude
+                     , servant-server
+
+  ghc-options:         -Wall
+                       -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wcompat
+                       -Widentities
+                       -Wredundant-constraints
+                       -fhide-source-paths
+                       -Wmissing-export-lists
+                       -Wpartial-fields
+
+  default-language:    Haskell2010
+
+test-suite backend-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+
+  build-depends:       base-noprelude >= 4.11.1.0
+                     , backend
+                     , relude
+
+  ghc-options:         -Wall
+                       -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wcompat
+                       -Widentities
+                       -Wredundant-constraints
+                       -fhide-source-paths
+                       -Wmissing-export-lists
+                       -Wpartial-fields
+
+  default-language:    Haskell2010

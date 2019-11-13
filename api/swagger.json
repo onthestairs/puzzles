@@ -1,0 +1,58 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Games",
+    "license": {
+      "url": "http://mit.com",
+      "name": "MIT"
+    },
+    "description": "This is an API that tests swagger integration"
+  },
+  "definitions": {
+    "User": {
+      "required": ["name", "age", "email", "registration_date"],
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "registration_date": {
+          "$ref": "#/definitions/Day"
+        },
+        "age": {
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Day": {
+      "example": "2016-07-22",
+      "format": "date",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/User"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        },
+        "produces": ["application/json;charset=utf-8", "application/json"]
+      }
+    }
+  }
+}
