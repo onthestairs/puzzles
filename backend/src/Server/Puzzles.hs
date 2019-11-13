@@ -13,11 +13,6 @@ type PuzzleAPI a =
     :<|> Capture "id" Int :> Get '[JSON] a
     :<|> ReqBody '[JSON] a :> Post '[JSON] a
 
--- type API = "puzzles" :> "train-tracks" :> (PuzzleAPI TrainTracks)
-
--- api :: Proxy (API)
--- api = Proxy
-
 puzzleServer ::
   (Members [KVS Int a, Error Text] r) =>
   ServerT (PuzzleAPI a) (Sem r)
