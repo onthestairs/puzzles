@@ -11,7 +11,7 @@ appSwagger =
   toSwagger api
     & info . title .~ "Games"
     & info . version .~ "1.0"
-    & info . description ?~ "This is an API that tests swagger integration"
+    & info . description ?~ "Puzzles"
     & info . license ?~ ("MIT" & url ?~ URL "http://mit.com")
 
 writeSwaggerJSON :: IO ()

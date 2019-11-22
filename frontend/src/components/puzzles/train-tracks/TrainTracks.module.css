@@ -1,0 +1,26 @@
+.gridRow {
+  display: grid;
+}
+
+.cell {
+  border: 1px solid black;
+  user-select: none;
+}
+
+.play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.puzzleHeader {
+  height: 100px;
+  border-bottom: 1px solid black;
+}
+
+.puzzlePage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

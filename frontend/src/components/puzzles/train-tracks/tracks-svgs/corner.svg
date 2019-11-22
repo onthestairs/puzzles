@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500px" height="500px" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+
+<rect x="0" y="100" style="fill: black;" width="400" height="50"/>
+<rect x="0" y="350" style="fill: black;" width="150" height="50"/>
+
+<rect x="100" y="350" style="fill: black;" width="50" height="150"/>
+<rect x="350" y="100" style="fill: black;" width="50" height="400"/>
+
+</svg>
+
+
+
+
+

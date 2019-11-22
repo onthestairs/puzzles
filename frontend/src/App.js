@@ -1,21 +1,18 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 import { RestfulProvider } from "restful-react";
 
-import { useGetUsers } from "./api-hooks";
+import { useGetpuzzlesTrainTracks } from "./api-hooks";
+import TrainTracksApp from "./components/puzzles/train-tracks/TrainTracksApp";
 
 const App = () => {
-  const { loading, data: users } = useGetUsers();
+  const { loading, data: trainTracks } = useGetpuzzlesTrainTracks();
+  if (loading) {
+    return "loading...";
+  }
   return (
-    <div className="App">
-      {loading && "loading!..."}
-      {users &&
-        users.map(
-          user => `${user.name} (registered ${user.registration_date})`
-        )}
-    </div>
+    <TrainTracksApp trainTracks={trainTracks[Object.keys(trainTracks)[0]]} />
   );
 };
 
