@@ -24,6 +24,11 @@ library
   hs-source-dirs:      src
   exposed-modules:     Server
                        Prelude
+                       Effects.KVS
+                       Effects.PuzzleCRUD
+                       Server.Crossword
+                       Server.Puzzles
+                       Server.TrainTracks
 
   build-depends:       base-noprelude >= 4.11.1.0
                      , relude

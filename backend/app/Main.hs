@@ -1,6 +1,6 @@
 module Main (main) where
 
-
+import Server
 
 main :: IO ()
-main = putStrLn "hello"
+main = runServer

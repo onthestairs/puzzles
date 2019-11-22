@@ -62,7 +62,7 @@ createApp = do
     handleErrors (Left x) = Left err404 {errBody = "Error"}
     handleErrors (Right value) = Right value
 
-main :: IO ()
-main = do
+runServer :: IO ()
+runServer = do
   app <- createApp
   W.run 8081 (simpleCors app)
