@@ -11,4 +11,4 @@ jobs:
       - name: Step into backend
         run: cd backend
       - name: Build the Docker image
-        run: docker build . --tag puzzles-backend:$(date +%s)
+        run: cd backend && docker build . --tag puzzles-backend:$(date +%s)
