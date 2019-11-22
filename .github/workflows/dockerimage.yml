@@ -18,7 +18,7 @@ jobs:
             cache-docker-
       - name: Debug Cache
         run: |
-          ls -lh cache-docker
+          ls -lh cache-docker | true
       - name: Load Docker image cache
         run: |
           docker load -i cache-docker/dependencies.tar | true
@@ -28,7 +28,7 @@ jobs:
         run: cd backend && docker build --target app --cache-from puzzles/app-dependencies:latest -t puzzles/app .
       - name: Debug Cache
         run: |
-          ls -lh cache-docker
+          ls -lh cache-docker | true
       - name: Save the docker images
         run: |
           mkdir -p cache-docker
