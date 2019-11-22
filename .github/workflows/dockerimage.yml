@@ -3,14 +3,12 @@ name: Docker Image CI
 on: [push]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Step into backend
-      run: cd backend
-    - name: Build the Docker image
-      run: docker build . --tag --puzzles-backend:$(date +%s)
+      - uses: actions/checkout@v1
+      - name: Step into backend
+        run: cd backend
+      - name: Build the Docker image
+        run: docker build . --tag puzzles-backend:$(date +%s)
