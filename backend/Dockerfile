@@ -8,7 +8,7 @@ RUN apt-get update \
 RUN mv libgmp*.deb libgmp.deb
 
 # Docker build should not use cached layer if any of these is modified
-COPY stack.yaml stack.yaml.lock /opt/build/
+COPY stack.yaml stack.yaml.lock backend.cabal /opt/build/
 RUN stack build --system-ghc --dependencies-only
 
 # -------------------------------------------------------------------------------------------

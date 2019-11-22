@@ -55,7 +55,7 @@ packages:
     hackage: unagi-chan-0.4.1.3@sha256:4283bb02bc5ee56203671756d92b24112eb6159f2b2840a10a539b4651d5f12e
 snapshots:
 - completed:
-    size: 512665
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2019/6/12.yaml
-    sha256: 990038bc481666609b856daaea428fcf66a443f797a1690be896c53aa8457386
-  original: nightly-2019-06-12
+    size: 525662
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/15.yaml
+    sha256: c5e673e5723931b64ef2eb5004f6d9ea3c95b58d48388dbc4de6f66b97c81f7a
+  original: lts-14.15
