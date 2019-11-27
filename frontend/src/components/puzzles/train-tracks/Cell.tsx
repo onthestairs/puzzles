@@ -43,9 +43,15 @@ const Grass = () => {
       style={{
         width: "100%",
         height: "100%",
-        backgroundColor: "green"
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "grey",
+        fontSize: "18px"
       }}
-    ></div>
+    >
+      x
+    </div>
   );
 };
 

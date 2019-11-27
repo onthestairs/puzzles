@@ -18,18 +18,61 @@ import Server.Puzzles
 import Server.TrainTracks
 
 initTrainTracks :: M.Map Int TrainTracks
+-- initTrainTracks =
+--   ( M.singleton
+--       2
+--       ( TrainTracks
+--           { _gridSize = GridSize {_cols = 8, _rows = 8},
+--             _startPos = GridPosition {_col = 0, _row = 3},
+--             _endPos = GridPosition {_col = 7, _row = 3},
+--             _rowCounts = [1, 2, 3, 4, 5],
+--             _colCounts = [5, 4, 3, 2, 1]
+--           }
+--       )
+--   )
 initTrainTracks =
   ( M.singleton
-      2
+      1
       ( TrainTracks
-          { _gridSize = GridSize {_cols = 8, _rows = 8},
-            _startPos = GridPosition {_col = 0, _row = 3},
-            _endPos = GridPosition {_col = 7, _row = 3},
-            _rowCounts = [1, 2, 3, 4, 5],
-            _colCounts = [5, 4, 3, 2, 1]
+          { _gridSize = GridSize {_cols = 6, _rows = 6},
+            _fixedCells =
+              [ PlacedCell {_direction = DownLeft, _position = GridPosition {_col = 0, _row = 1}},
+                PlacedCell {_direction = DownLeft, _position = GridPosition {_col = 3, _row = 0}},
+                PlacedCell {_direction = DownRight, _position = GridPosition {_col = 2, _row = 5}}
+              ],
+            _rowCounts = [3, 3, 5, 3, 3, 4],
+            _colCounts = [4, 5, 2, 4, 2, 4]
           }
       )
   )
+    <> ( M.singleton
+           2
+           ( TrainTracks
+               { _gridSize = GridSize {_cols = 6, _rows = 6},
+                 _fixedCells =
+                   [ PlacedCell {_direction = UpLeft, _position = GridPosition {_col = 0, _row = 3}},
+                     PlacedCell {_direction = DownLeft, _position = GridPosition {_col = 2, _row = 5}},
+                     PlacedCell {_direction = DownLeft, _position = GridPosition {_col = 4, _row = 4}}
+                   ],
+                 _rowCounts = [3, 4, 3, 2, 6, 5],
+                 _colCounts = [5, 3, 4, 2, 5, 4]
+               }
+           )
+       )
+    <> ( M.singleton
+           3
+           ( TrainTracks
+               { _gridSize = GridSize {_cols = 6, _rows = 6},
+                 _fixedCells =
+                   [ PlacedCell {_direction = DownLeft, _position = GridPosition {_col = 0, _row = 2}},
+                     PlacedCell {_direction = Vertical, _position = GridPosition {_col = 3, _row = 2}},
+                     PlacedCell {_direction = Vertical, _position = GridPosition {_col = 2, _row = 5}}
+                   ],
+                 _rowCounts = [4, 4, 6, 4, 1, 1],
+                 _colCounts = [2, 2, 6, 4, 3, 3]
+               }
+           )
+       )
 
 initCrosswords :: M.Map Int Crossword
 initCrosswords = (M.singleton 1 (Crossword 100))

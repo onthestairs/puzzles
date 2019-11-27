@@ -5,11 +5,15 @@ import { Get, GetProps, useGet, UseGetProps, Mutate, MutateProps, useMutate, Use
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
+export type Direction = "Unknown" | "Horizontal" | "Vertical" | "DownLeft" | "DownRight" | "UpLeft" | "UpRight" | "Empty";
+
 export type Crossword = number;
+
+export interface PlacedCell {_direction: Direction; _position: GridPosition}
 
 export interface GridPosition {_col: number; _row: number}
 
-export interface TrainTracks {_endPos: GridPosition; _gridSize: GridSize; _startPos: GridPosition; _colCounts: number[]; _rowCounts: number[]}
+export interface TrainTracks {_gridSize: GridSize; _fixedCells: PlacedCell[]; _colCounts: number[]; _rowCounts: number[]}
 
 export interface GridSize {_rows: number; _cols: number}
 

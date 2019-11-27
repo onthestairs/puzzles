@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TrainTracks } from "../../../api-hooks";
+import { TrainTracks } from "./game";
 import styles from "./TrainTracks.module.css";
 import TrainTracksGame from "./TrainTracksGame";
 

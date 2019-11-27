@@ -10,10 +10,38 @@
         "description": "Puzzles"
     },
     "definitions": {
+        "Direction": {
+            "type": "string",
+            "enum": [
+                "Unknown",
+                "Horizontal",
+                "Vertical",
+                "DownLeft",
+                "DownRight",
+                "UpLeft",
+                "UpRight",
+                "Empty"
+            ]
+        },
         "Crossword": {
             "maximum": 9223372036854775807,
             "minimum": -9223372036854775808,
             "type": "integer"
+        },
+        "PlacedCell": {
+            "required": [
+                "_direction",
+                "_position"
+            ],
+            "type": "object",
+            "properties": {
+                "_direction": {
+                    "$ref": "#/definitions/Direction"
+                },
+                "_position": {
+                    "$ref": "#/definitions/GridPosition"
+                }
+            }
         },
         "GridPosition": {
             "required": [
@@ -37,21 +65,20 @@
         "TrainTracks": {
             "required": [
                 "_gridSize",
-                "_startPos",
-                "_endPos",
+                "_fixedCells",
                 "_rowCounts",
                 "_colCounts"
             ],
             "type": "object",
             "properties": {
-                "_endPos": {
-                    "$ref": "#/definitions/GridPosition"
-                },
                 "_gridSize": {
                     "$ref": "#/definitions/GridSize"
                 },
-                "_startPos": {
-                    "$ref": "#/definitions/GridPosition"
+                "_fixedCells": {
+                    "items": {
+                        "$ref": "#/definitions/PlacedCell"
+                    },
+                    "type": "array"
                 },
                 "_colCounts": {
                     "items": {

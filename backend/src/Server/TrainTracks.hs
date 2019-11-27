@@ -5,6 +5,23 @@ module Server.TrainTracks where
 import Data.Aeson.Types
 import Data.Swagger
 
+data Direction
+  = Unknown
+  | Horizontal
+  | Vertical
+  | DownLeft
+  | DownRight
+  | UpLeft
+  | UpRight
+  | Empty
+  deriving (Eq, Show, Generic)
+
+instance ToJSON Direction
+
+instance FromJSON Direction
+
+instance ToSchema Direction
+
 data GridSize
   = GridSize
       { _cols :: Int,
@@ -31,11 +48,23 @@ instance FromJSON GridPosition
 
 instance ToSchema GridPosition
 
+data PlacedCell
+  = PlacedCell
+      { _direction :: Direction,
+        _position :: GridPosition
+      }
+  deriving (Eq, Show, Generic)
+
+instance ToJSON PlacedCell
+
+instance FromJSON PlacedCell
+
+instance ToSchema PlacedCell
+
 data TrainTracks
   = TrainTracks
       { _gridSize :: GridSize,
-        _startPos :: GridPosition,
-        _endPos :: GridPosition,
+        _fixedCells :: [PlacedCell],
         _rowCounts :: [Int],
         _colCounts :: [Int]
       }

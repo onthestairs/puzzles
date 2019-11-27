@@ -6,8 +6,27 @@ export const range = (n: number): number[] => {
   return xs;
 };
 
-export const updateListAt = (xs: any[], index: number, x: any): any[] => {
+export const updateListAt = <T,>(xs: T[], i: number, x: any): T[] => {
   let ys = [...xs];
-  ys[index] = x;
+  ys[i] = x;
   return ys;
+};
+
+export const updateNestedListAt = <T,>(
+  xs: T[][],
+  i: number,
+  j: number,
+  x: any
+): T[][] => {
+  let ys = [...xs];
+  ys[i] = updateListAt(ys[i], j, x);
+  return ys;
+};
+
+export const areArraysEqual = (xs: number[], ys: number[]): Boolean => {
+  if (xs.length !== ys.length) return false;
+
+  return xs.every((x, i) => {
+    return x === ys[i];
+  });
 };

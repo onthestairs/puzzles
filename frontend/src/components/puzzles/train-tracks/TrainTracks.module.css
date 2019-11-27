@@ -7,6 +7,22 @@
   user-select: none;
 }
 
+.trackCounter {
+  user-select: none;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.equalTrackCounter {
+  color: green;
+}
+
+.overTrackCounter {
+  color: red;
+}
+
 .play {
   display: flex;
   justify-content: center;
