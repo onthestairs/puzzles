@@ -47,6 +47,7 @@ library
                      , polysemy-zoo >= 0.6.0.1
                      , polysemy-plugin >= 0.2.4.0
                      , containers
+                     , random
 
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns
