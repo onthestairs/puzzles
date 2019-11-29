@@ -48,6 +48,7 @@ library
                      , polysemy-plugin >= 0.2.4.0
                      , containers
                      , random
+                     , rando
 
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns

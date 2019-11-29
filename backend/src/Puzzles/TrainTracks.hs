@@ -105,15 +105,15 @@ test :: IO ()
 test = do
   let rows = 4
   let cols = 4
-  paths <- runM . runShuffleIO $ makePaths rows cols
+  paths <- runM . runFisherYatesIO $ makePaths rows cols
   forM_ paths $ \path ->
     putTextLn (makeGridFromPath rows cols path)
 
 test2 :: IO ()
 test2 = do
-  let rows = 5
-  let cols = 5
-  paths <- runM . runShuffleIO $ makePaths rows cols
+  let rows = 6
+  let cols = 6
+  paths <- runM . runFisherYatesIO $ makePaths rows cols
   let path = viaNonEmpty head (filter ((> 10) . length) paths)
   case path of
     Nothing -> putTextLn "couldnt find :("
