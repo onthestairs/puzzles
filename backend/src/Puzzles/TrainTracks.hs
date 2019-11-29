@@ -1,8 +1,10 @@
 module Puzzles.TrainTracks where
 
 import qualified Data.Map.Strict as M
+import qualified Data.Set as Set
 import Effects.Shuffle
 import Polysemy
+import qualified Prng
 import Prelude hiding (Down, Left, Right)
 
 type Grid = [[Int]]
@@ -23,7 +25,7 @@ data PathPiece
 
 allPieces = [UpLeft, UpRight, DownLeft, DownRight, Horizontal, Vertical]
 
-makePaths :: (Member Shuffle r) => Int -> Int -> Sem r [[PathPiece]]
+makePaths :: (Member Shuffle3 r) => Int -> Int -> Sem r [[PathPiece]]
 makePaths rows cols = do
   -- startingPosition <- pickStartingPosition rows cols
   -- startingPiece <- pickStartingPiece
@@ -32,7 +34,7 @@ makePaths rows cols = do
   let startingOutDirection = Right
   -- let startingDirection = getStartingDirection startingPosition startingPiece
   let startingPathPiece = PathPiece {piece = startingPiece, position = startingPosition, outDirection = startingOutDirection}
-  findPaths rows cols (startingPathPiece :| [])
+  findPaths rows cols (startingPathPiece :| []) (Set.singleton startingPosition)
 
 getNextDirection Down UpLeft = Left
 getNextDirection Down UpRight = Right
@@ -52,10 +54,10 @@ getDelta Up = (-1, 0)
 getDelta Left = (0, -1)
 getDelta Right = (0, 1)
 
-getDirectionPieces Down = [UpLeft, UpRight, Vertical]
-getDirectionPieces Up = [DownLeft, DownRight, Vertical]
-getDirectionPieces Left = [UpRight, DownRight, Horizontal]
-getDirectionPieces Right = [UpLeft, DownLeft, Horizontal]
+getDirectionPieces Down = (UpLeft, UpRight, Vertical)
+getDirectionPieces Up = (DownLeft, DownRight, Vertical)
+getDirectionPieces Left = (UpRight, DownRight, Horizontal)
+getDirectionPieces Right = (UpLeft, DownLeft, Horizontal)
 
 add :: Position -> Position -> Position
 add (r1, c1) (r2, c2) = (r1 + r2, c1 + c2)
@@ -72,17 +74,19 @@ nextPositionIs position direction piece pred =
   let nextPos = getNextPosition position direction piece
    in pred nextPos
 
-findPaths :: (Member Shuffle r) => Int -> Int -> NonEmpty PathPiece -> Sem r [[PathPiece]]
-findPaths rows cols xs@((PathPiece previousPiece previousPosition previousOutDirection) :| _) = do
+tripleToList (x, y, z) = [x, y, z]
+
+findPaths :: (Member Shuffle3 r) => Int -> Int -> NonEmpty PathPiece -> Set.Set Position -> Sem r [[PathPiece]]
+findPaths rows cols xs@((PathPiece previousPiece previousPosition previousOutDirection) :| _) visitedPositions = do
   let currentPosition = add previousPosition (getDelta previousOutDirection)
   let directionPieces = getDirectionPieces previousOutDirection
-  possiblePieces <- shuffle directionPieces
+  possiblePieces <- tripleToList <$> shuffle3 directionPieces
   let nextPositionIs' = nextPositionIs currentPosition previousOutDirection
   let isEdge (row, col) = row == -1 || col == -1 || row == rows || col == cols
-  let isFree (row, col) = all (\(PathPiece _ pathPosition _) -> pathPosition /= (row, col) && row >= 0 && col >= 0 && row < rows && col < cols) (toList xs)
+  let isFree (row, col) = (Set.notMember (row, col) visitedPositions) && row >= 0 && col >= 0 && row < rows && col < cols
   let toEdgePieces = filter (\piece -> nextPositionIs' piece isEdge) possiblePieces
   let toFreePieces = filter (\piece -> nextPositionIs' piece isFree) possiblePieces
-  nextPaths <- concat <$> mapM (\piece -> findPaths rows cols ((PathPiece piece currentPosition (getNextDirection previousOutDirection piece)) :| toList xs)) toFreePieces
+  nextPaths <- concat <$> mapM (\piece -> findPaths rows cols ((PathPiece piece currentPosition (getNextDirection previousOutDirection piece)) :| toList xs) (Set.insert currentPosition visitedPositions)) toFreePieces
   let completedPaths = map (\piece -> (PathPiece piece currentPosition (getNextDirection previousOutDirection piece)) : toList xs) toEdgePieces
   pure $ completedPaths ++ nextPaths
 
@@ -101,20 +105,28 @@ makeGridFromPath rows cols ps =
 
 -- test2 =  makePaths 2 2
 
-test :: IO ()
-test = do
-  let rows = 4
-  let cols = 4
-  paths <- runM . runFisherYatesIO $ makePaths rows cols
-  forM_ paths $ \path ->
-    putTextLn (makeGridFromPath rows cols path)
+-- test :: IO ()
+-- test = do
+--   let rows = 4
+--   let cols = 4
+--   paths <- runM . runShuffle3State gen $ makePaths rows cols
+--   forM_ paths $ \path ->
+--     putTextLn (makeGridFromPath rows cols path)
 
 test2 :: IO ()
 test2 = do
   let rows = 6
   let cols = 6
-  paths <- runM . runFisherYatesIO $ makePaths rows cols
-  let path = viaNonEmpty head (filter ((> 10) . length) paths)
+  let gen = (Prng.mkState 111 222 333 444)
+  let paths = run . runShuffle3State gen $ makePaths rows cols
+  let path = viaNonEmpty head (filter ((> 18) . length) paths)
   case path of
     Nothing -> putTextLn "couldnt find :("
     Just path -> putTextLn (makeGridFromPath rows cols path)
+
+test3 :: IO ()
+test3 = do
+  let gen = Prng.mkState 111 222 333 444
+  let zs = run . (runShuffle3State gen) $ shuffle3 (1, 2, 3)
+  putTextLn ("hello")
+  putTextLn (show zs)
