@@ -3,9 +3,10 @@
 module Server where
 
 import qualified Data.Map.Strict as M
+import Data.Time.Clock.POSIX
 import Effects.KVS
 import Effects.PuzzleCRUD
-import Effects.Shuffle
+import Effects.Random
 import qualified Network.Wai.Handler.Warp as W
 import Network.Wai.Middleware.Cors
 import Polysemy
@@ -86,11 +87,18 @@ api = Proxy
 
 apiServer = (puzzleServer :<|> randomTrainTrackServer) :<|> puzzleServer
 
+getTimeSeed :: IO (Word64, Word64, Word64, Word64)
+getTimeSeed = do
+  time <- round <$> getPOSIXTime
+  let getWordSeed n = fromInteger $ time `mod` n
+  pure $ (getWordSeed 345, getWordSeed 325346, getWordSeed 4, getWordSeed 9499)
+
 createApp :: IO Application
 createApp = do
   kvsIORefTrainTracks <- newIORef initTrainTracks
   kvsIORefCrossword <- newIORef initCrosswords
-  genIORef <- newIORef (Prng.mkState 111 222 333 444)
+  (w, x, y, z) <- getTimeSeed
+  genIORef <- newIORef (Prng.mkState w x y z)
   return (serve api $ hoistServer api (\sem -> interpretServer sem kvsIORefTrainTracks kvsIORefCrossword genIORef) apiServer)
   where
     interpretServer sem kvsIORefTrainTracks kvsIORefCrossword genIORef =
@@ -100,7 +108,7 @@ createApp = do
         & runServerWithIORef kvsIORefTrainTracks
         & withTrace
         & traceToIO
-        & runShuffle3StateIORef genIORef
+        & runRandomStateIORef genIORef
         & runServerWithIORef kvsIORefCrossword
         & runError @PuzzleError
         & runM

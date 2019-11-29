@@ -2,7 +2,7 @@ module Puzzles.TrainTracks where
 
 import qualified Data.Map.Strict as M
 import qualified Data.Set as Set
-import Effects.Shuffle
+import Effects.Random
 import Polysemy
 import qualified Prng
 import Prelude hiding (Down, Left, Right)
@@ -25,18 +25,46 @@ data PathPiece
 
 allPieces = [UpLeft, UpRight, DownLeft, DownRight, Horizontal, Vertical]
 
-makePaths :: (Member Shuffle3 r) => Int -> Int -> Sem r [[PathPiece]]
+data StartingEdge = TopEdge | BottomEdge | LeftEdge | RightEdge deriving (Show)
+
+pickStartingPosition :: (Member Random r) => Int -> Int -> Sem r (StartingEdge, Position)
+pickStartingPosition rows cols = do
+  edge <- pick (TopEdge :| [BottomEdge, LeftEdge, RightEdge])
+  randomCol <- pick (0 :| [1 .. cols - 1])
+  randomRow <- pick (0 :| [1 .. rows - 1])
+  pure $ case edge of
+    TopEdge -> (TopEdge, (0, randomCol))
+    BottomEdge -> (BottomEdge, (rows - 1, randomCol))
+    LeftEdge -> (LeftEdge, (randomCol, 0))
+    RightEdge -> (RightEdge, (randomCol, cols - 1))
+
+topEdgePieces rows cols (row, col) = Vertical :| [] <> if row /= 0 then [UpLeft] else [] <> if row /= rows - 1 then [UpRight] else []
+
+bottomEdgePieces rows cols (row, col) = Vertical :| [] <> if row /= 0 then [DownLeft] else [] <> if row /= rows - 1 then [DownRight] else []
+
+leftEdgePieces rows cols (row, col) = Horizontal :| [] <> if col /= 0 then [UpLeft] else [] <> if col /= cols - 1 then [DownLeft] else []
+
+rightEdgePieces rows cols (row, col) = Horizontal :| [] <> if row /= 0 then [UpRight] else [] <> if row /= cols - 1 then [DownRight] else []
+
+findCandidatePieces rows cols (row, col) TopEdge = (topEdgePieces rows cols (row, col), Down)
+findCandidatePieces rows cols (row, col) LeftEdge = (leftEdgePieces rows cols (row, col), Right)
+findCandidatePieces rows cols (row, col) BottomEdge = (bottomEdgePieces rows cols (row, col), Up)
+findCandidatePieces rows cols (row, col) RightEdge = (rightEdgePieces rows cols (row, col), Left)
+
+pickStartingPieceAndDirection :: (Member Random r) => Int -> Int -> Position -> StartingEdge -> Sem r (Piece, Direction)
+pickStartingPieceAndDirection rows cols (row, col) startingEdge = do
+  let (candidatePieces, direction) = findCandidatePieces rows cols (row, col) startingEdge
+  piece <- pick candidatePieces
+  pure $ (piece, getNextDirection direction piece)
+
+makePaths :: (Member Random r) => Int -> Int -> Sem r [[PathPiece]]
 makePaths rows cols = do
-  -- startingPosition <- pickStartingPosition rows cols
-  -- startingPiece <- pickStartingPiece
-  let startingPosition = (0, 0)
-  let startingPiece = UpRight
-  let startingOutDirection = Right
-  -- let startingDirection = getStartingDirection startingPosition startingPiece
+  (startingEdge, startingPosition) <- pickStartingPosition rows cols
+  (startingPiece, startingOutDirection) <- pickStartingPieceAndDirection rows cols startingPosition startingEdge
   let startingPathPiece = PathPiece {piece = startingPiece, position = startingPosition, outDirection = startingOutDirection}
   findPaths rows cols (startingPathPiece :| []) (Set.singleton startingPosition)
 
-makeOnePath :: (Member Shuffle3 r) => Int -> Int -> ([PathPiece] -> Bool) -> Sem r (Maybe [PathPiece])
+makeOnePath :: (Member Random r) => Int -> Int -> ([PathPiece] -> Bool) -> Sem r (Maybe [PathPiece])
 makeOnePath rows cols pred = do
   paths <- makePaths rows cols
   let goodPaths = filter pred paths
@@ -82,7 +110,7 @@ nextPositionIs position direction piece pred =
 
 tripleToList (x, y, z) = [x, y, z]
 
-findPaths :: (Member Shuffle3 r) => Int -> Int -> NonEmpty PathPiece -> Set.Set Position -> Sem r [[PathPiece]]
+findPaths :: (Member Random r) => Int -> Int -> NonEmpty PathPiece -> Set.Set Position -> Sem r [[PathPiece]]
 findPaths rows cols xs@((PathPiece previousPiece previousPosition previousOutDirection) :| _) visitedPositions = do
   let currentPosition = add previousPosition (getDelta previousOutDirection)
   let directionPieces = getDirectionPieces previousOutDirection
@@ -114,7 +142,7 @@ test2 = do
   let rows = 6
   let cols = 6
   let gen = (Prng.mkState 111 222 333 444)
-  let paths = run . runShuffle3State gen $ makePaths rows cols
+  let paths = run . runRandomState gen $ makePaths rows cols
   let path = viaNonEmpty head (filter ((> 18) . length) paths)
   case path of
     Nothing -> putTextLn "couldnt find :("
@@ -123,6 +151,6 @@ test2 = do
 test3 :: IO ()
 test3 = do
   let gen = Prng.mkState 111 222 333 444
-  let zs = run . runShuffle3State gen $ shuffle3 (1, 2, 3)
+  let zs = run . runRandomState gen $ shuffle3 (1, 2, 3)
   putTextLn ("hello")
   putTextLn (show zs)

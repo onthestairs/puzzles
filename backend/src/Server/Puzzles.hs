@@ -6,7 +6,7 @@ import qualified Data.Map.Strict as M
 import Data.Proxy
 import Effects.KVS
 import Effects.PuzzleCRUD
-import Effects.Shuffle
+import Effects.Random
 import Polysemy
 import Polysemy.Error
 import Polysemy.State
@@ -40,7 +40,7 @@ runServerWithIORef ref sem =
 type RandomTrainTrack = "random" :> Get '[JSON] TrainTracks
 
 randomTrainTrackServer ::
-  (Members '[Shuffle3, Error PuzzleError] r) =>
+  (Members '[Random, Error PuzzleError] r) =>
   ServerT (RandomTrainTrack) (Sem r)
 randomTrainTrackServer = do
   let rows = 5
