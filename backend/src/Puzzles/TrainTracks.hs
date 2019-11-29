@@ -36,6 +36,12 @@ makePaths rows cols = do
   let startingPathPiece = PathPiece {piece = startingPiece, position = startingPosition, outDirection = startingOutDirection}
   findPaths rows cols (startingPathPiece :| []) (Set.singleton startingPosition)
 
+makeOnePath :: (Member Shuffle3 r) => Int -> Int -> ([PathPiece] -> Bool) -> Sem r (Maybe [PathPiece])
+makeOnePath rows cols pred = do
+  paths <- makePaths rows cols
+  let goodPaths = filter pred paths
+  pure $ viaNonEmpty head goodPaths
+
 getNextDirection Down UpLeft = Left
 getNextDirection Down UpRight = Right
 getNextDirection Up DownLeft = Left
@@ -117,6 +123,6 @@ test2 = do
 test3 :: IO ()
 test3 = do
   let gen = Prng.mkState 111 222 333 444
-  let zs = run . (runShuffle3State gen) $ shuffle3 (1, 2, 3)
+  let zs = run . runShuffle3State gen $ shuffle3 (1, 2, 3)
   putTextLn ("hello")
   putTextLn (show zs)

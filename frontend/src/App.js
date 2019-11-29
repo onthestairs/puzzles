@@ -10,7 +10,10 @@ import "./App.css";
 
 import { RestfulProvider } from "restful-react";
 
-import { useGetpuzzlesTrainTracks } from "./api-hooks";
+import {
+  useGetpuzzlesTrainTracks,
+  useGetpuzzlesTrainTracksRandom
+} from "./api-hooks";
 import { parseTrainTracks } from "./components/puzzles/train-tracks/game";
 import TrainTracksApp from "./components/puzzles/train-tracks/TrainTracksApp";
 
@@ -33,6 +36,12 @@ const App = () => {
               </li>
             );
           })}
+          <li>
+            <Link to={`/train-tracks/random`}>{`Train tracks random`}</Link>
+          </li>
+        </Route>
+        <Route path="/train-tracks/random">
+          <RandomTrainTracksApp />
         </Route>
         <Route path="/train-tracks/:id">
           <TrainTracksAppDispatch allTrainTracks={allTrainTracks} />
@@ -40,6 +49,15 @@ const App = () => {
       </Switch>
     </Router>
   );
+};
+
+const RandomTrainTracksApp = () => {
+  const { loading, data: randomTrainTracks } = useGetpuzzlesTrainTracksRandom();
+  if (loading) {
+    return "loading...";
+  }
+  const parsedTrainTracks = parseTrainTracks(randomTrainTracks);
+  return <TrainTracksApp trainTracks={parsedTrainTracks} />;
 };
 
 const TrainTracksAppDispatch = ({ allTrainTracks }) => {

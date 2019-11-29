@@ -1,0 +1,496 @@
+	Fri Nov 29 11:50 2019 Time and Allocation Profiling Report  (Final)
+
+	   backend +RTS -N -p -RTS
+
+	total time  =        0.17 secs   (691 ticks @ 1000 us, 4 processors)
+	total alloc = 746,010,424 bytes  (excludes profiling overheads)
+
+COST CENTRE                  MODULE                            SRC                                                       %time %alloc
+
+shuffle'                     System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(22,1)-(38,37)    15.2   10.5
+findPaths.isFree             Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:7-155                         9.6    0.0
+primitive                    Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                         7.7    2.2
+<*>.\                        Polysemy.Internal                 src/Polysemy/Internal.hs:258:33-43                          5.4    4.2
+>>=.\                        Polysemy.Internal                 src/Polysemy/Internal.hs:(266,30)-(268,18)                  5.2   10.6
+runSem                       Polysemy.Internal                 src/Polysemy/Internal.hs:195:5-10                           3.5    1.5
+pure                         Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                           3.2    4.5
+fmap.\                       Polysemy.Internal                 src/Polysemy/Internal.hs:250:32-43                          2.7    3.5
+primitive                    Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                          2.5    1.7
+runFisherYatesIO             Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                       2.5    5.5
+fmap                         Data.Vector.Fusion.Stream.Monadic Data/Vector/Fusion/Stream/Monadic.hs:(133,3)-(135,20)       2.3    2.0
+findPaths.\                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:85:43-156                        2.3    1.5
+basicUnsafeWrite             Data.Vector.Mutable               Data/Vector/Mutable.hs:118:3-65                             2.2    2.9
+shuffle'.\                   System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(30,47)-(33,38)    2.0    0.0
+findPaths.isFree.\           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:65-142                        1.9    0.0
+basicUnsafeGrow              Data.Vector.Generic.Mutable.Base  Data/Vector/Generic/Mutable/Base.hs:(138,3)-(144,23)        1.7    1.0
+tfGenSplit                   System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(166,1)-(173,35)                1.6    1.7
+basicUnsafeNew               Data.Vector.Mutable               Data/Vector/Mutable.hs:(99,3)-(102,32)                      1.4    1.5
+findPaths.toFreePieces       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:84:7-83                          1.4    0.6
+next                         System.Random.TF.Gen              src/System/Random/TF/Gen.hs:253:3-20                        1.2    3.7
+createBlock256               System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(41,1)-(47,26)                  1.2    2.6
+findPaths                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(76,1)-(87,36)                   1.2    8.9
+basicUnsafeIndexM            Data.Vector                       Data/Vector.hs:277:3-62                                     1.0    0.5
+<*>                          Polysemy.Internal                 src/Polysemy/Internal.hs:258:3-43                           1.0    1.0
+getNextPosition.nextPosition Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:67:7-39                          1.0    1.5
+getNextPosition              Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(64,1)-(68,18)                   1.0    0.0
+runFisherYatesIO.\           Effects.Shuffle                   src/Effects/Shuffle.hs:28:17-37                             1.0    2.8
+mash                         System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(117,1)-(126,29)                0.9    1.0
+nextPositionIs               Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(71,1)-(73,18)                   0.9    1.2
+randomWord64'.\              System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(122,5)-(123,41)          0.7    1.6
+randomInt64.randomInt64'     System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(114,3)-(115,54)          0.7    2.1
+boundsWrap                   System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(54,1)-(58,34)            0.4    1.2
+basicUnsafeRead              Data.Vector.Mutable               Data/Vector/Mutable.hs:115:3-59                             0.3    1.3
+randomR.(...)                System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76                 0.3    1.3
+basicUnsafeCopy              Data.Vector.Mutable               Data/Vector/Mutable.hs:(121,3)-(122,36)                     0.1    1.2
+mkTFGen                      System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(133,1)-(134,36)                0.1    2.0
+shuffle                      Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                              0.1    1.4
+
+
+                                                                                                                                                                individual      inherited
+COST CENTRE                                      MODULE                            SRC                                                      no.      entries  %time %alloc   %time %alloc
+
+MAIN                                             MAIN                              <built-in>                                               1577          0    0.0    0.0   100.0  100.0
+ CAF                                             GHC.Conc.Signal                   <entire-module>                                          1679          0    0.0    0.0     0.0    0.0
+ CAF                                             GHC.IO.Encoding                   <entire-module>                                          1660          0    0.0    0.0     0.0    0.0
+ CAF                                             GHC.IO.Encoding.Iconv             <entire-module>                                          1658          0    0.1    0.0     0.1    0.0
+ CAF                                             GHC.IO.Handle.FD                  <entire-module>                                          1649          0    0.0    0.0     0.0    0.0
+ CAF                                             GHC.Event.Poll                    <entire-module>                                          1595          0    0.0    0.0     0.0    0.0
+ CAF                                             GHC.Event.Thread                  <entire-module>                                          1594          0    0.0    0.0     0.0    0.0
+ CAF:$fApplicativeBox_$cpure                     Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:45:3-6                        2958          0    0.0    0.0     0.0    0.0
+  pure                                           Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:45:3-12                       3325          1    0.0    0.0     0.0    0.0
+ CAF:$fApplicativeId4                            Data.Vector.Fusion.Util           <no location info>                                       2955          0    0.0    0.0     0.0    0.0
+  pure                                           Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:31:3-11                       3233          1    0.0    0.0     0.0    0.0
+ CAF:$fMonadBox_$creturn                         Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:49:3-8                        2959          0    0.0    0.0     0.0    0.0
+  return                                         Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:49:3-15                       3324          1    0.0    0.0     0.0    0.0
+ CAF:$fMonadId1                                  Data.Vector.Fusion.Util           <no location info>                                       2957          0    0.0    0.0     0.0    0.0
+  return                                         Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:35:3-15                       3232          1    0.0    0.0     0.0    0.0
+ CAF:$fPrimMonadST1_r3UH                         Control.Monad.Primitive           <no location info>                                       2425          0    0.0    0.0     0.0    0.0
+  primitive                                      Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3252          1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenTFGen0_$csplit                   System.Random.TF.Gen              src/System/Random/TF/Gen.hs:254:3-7                      3032          0    0.0    0.0     0.0    0.0
+  split                                          System.Random.TF.Gen              src/System/Random/TF/Gen.hs:254:3-21                     3279          1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenTFGen7_rdbE                      System.Random.TF.Gen              <no location info>                                       3040          0    0.0    0.0     0.0    0.0
+  next                                           System.Random.TF.Gen              src/System/Random/TF/Gen.hs:253:3-20                     3277          1    0.0    0.0     0.0    0.0
+ CAF:$fToText[]_$ctoText                         Relude.String.Conversion          src/Relude/String/Conversion.hs:137:5-10                 3074          0    0.0    0.0     0.0    0.0
+  toText                                         Relude.String.Conversion          src/Relude/String/Conversion.hs:137:5-19                 3566          1    0.0    0.0     0.0    0.0
+ CAF:$srunFisherYatesIO1                         Puzzles.TrainTracks               <no location info>                                       3137          0    0.0    0.0     0.0    0.0
+  finder                                         Polysemy.Internal.Union           src/Polysemy/Internal/Union.hs:191:3-13                  3181          1    0.0    0.0     0.0    0.0
+ CAF:doInternalChecks                            Data.Vector.Internal.Check        Data/Vector/Internal/Check.hs:71:1-16                    2962          0    0.0    0.0     0.0    0.0
+  doInternalChecks                               Data.Vector.Internal.Check        Data/Vector/Internal/Check.hs:71:1-24                    3249          1    0.0    0.0     0.0    0.0
+ CAF:doUnsafeChecks                              Data.Vector.Internal.Check        Data/Vector/Internal/Check.hs:64:1-14                    2961          0    0.0    0.0     0.0    0.0
+  doUnsafeChecks                                 Data.Vector.Internal.Check        Data/Vector/Internal/Check.hs:64:1-22                    3240          1    0.0    0.0     0.0    0.0
+ CAF:getInitialStateT1                           Polysemy.Internal.Tactics         <no location info>                                       2984          0    0.0    0.0     0.0    0.0
+  getInitialStateT                               Polysemy.Internal.Tactics         src/Polysemy/Internal/Tactics.hs:90:1-63                 3210          1    0.0    0.0     0.0    0.0
+ CAF:getInitialStateT2                           Polysemy.Internal.Tactics         <no location info>                                       2983          0    0.0    0.0     0.0    0.0
+  getInitialStateT                               Polysemy.Internal.Tactics         src/Polysemy/Internal/Tactics.hs:90:1-63                 3214          0    0.0    0.0     0.0    0.0
+ CAF:getInitialStateT7                           Polysemy.Internal.Tactics         <no location info>                                       2982          0    0.0    0.0     0.0    0.0
+  finder                                         Polysemy.Internal.Union           src/Polysemy/Internal/Union.hs:191:3-13                  3215          1    0.0    0.0     0.0    0.0
+ CAF:initTFGen1                                  System.Random.TF.Init             <no location info>                                       3007          0    0.0    0.0     0.0    0.0
+  initTFGen                                      System.Random.TF.Init             src/System/Random/TF/Init.hs:(66,1)-(72,22)              3202          1    0.0    0.0     0.0    0.0
+ CAF:initTFGen2                                  System.Random.TF.Init             <no location info>                                       3005          0    0.0    0.0     0.0    0.0
+  mkSeedTime                                     System.Random.TF.Init             src/System/Random/TF/Init.hs:(33,1)-(45,25)              3204          1    0.0    0.0     0.0    0.0
+ CAF:lvl14_rrIr                                  Puzzles.TrainTracks               <no location info>                                       3133          0    0.0    0.0     0.0    0.0
+  findPaths                                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(76,1)-(87,36)                3503          0    0.0    0.0     0.0    0.0
+   >>=                                           Polysemy.Internal                 src/Polysemy/Internal.hs:(266,3)-(268,18)                3504          0    0.0    0.0     0.0    0.0
+    >>=.\                                        Polysemy.Internal                 src/Polysemy/Internal.hs:(266,30)-(268,18)               3505          0    0.0    0.0     0.0    0.0
+     pure                                        Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3506          1    0.0    0.0     0.0    0.0
+ CAF:lvl21_r8yf                                  System.Random.Shuffle.FisherYates <no location info>                                       3048          0    0.0    0.0     0.0    0.0
+  shuffle'                                       System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(22,1)-(38,37)  3263          0    0.0    0.0     0.0    0.0
+   shuffle'.\                                    System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(30,47)-(33,38) 3264          0    0.0    0.0     0.0    0.0
+    randSTFromZero                               System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(43,1)-(47,9)   3265          0    0.0    0.0     0.0    0.0
+     randSTFromZero.(...)                        System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:45:8-39         3266          0    0.0    0.0     0.0    0.0
+      randomR                                    System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(201,3)-(202,76)       3267          0    0.0    0.0     0.0    0.0
+       randomR.(...)                             System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76              3268          0    0.0    0.0     0.0    0.0
+        randomR                                  System.Random.TF.Instances        src/System/Random/TF/Instances.hs:238:3-23               3269          1    0.0    0.0     0.0    0.0
+ CAF:main1                                       Main                              <no location info>                                       3152          0    0.0    0.0     0.0    0.0
+  main                                           Main                              app/Main.hs:7:1-12                                       3154          1    0.0    0.0     0.0    0.0
+ CAF:makePaths2                                  Puzzles.TrainTracks               <no location info>                                       3132          0    0.0    0.0     0.0    0.0
+  makePaths                                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(27,1)-(35,47)                3162          0    0.0    0.0     0.0    0.0
+   makePaths.startingPathPiece                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:34:7-125                      3163          1    0.0    0.0     0.0    0.0
+ CAF:makePaths3                                  Puzzles.TrainTracks               <no location info>                                       3131          0    0.0    0.0     0.0    0.0
+  makePaths                                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(27,1)-(35,47)                3164          0    0.0    0.0     0.0    0.0
+   makePaths.startingPathPiece                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:34:7-125                      3165          0    0.0    0.0     0.0    0.0
+ CAF:makePaths_startingOutDirection              Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:32:7-26                       3128          0    0.0    0.0     0.0    0.0
+  makePaths                                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(27,1)-(35,47)                3170          0    0.0    0.0     0.0    0.0
+   makePaths.startingOutDirection                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:32:7-34                       3171          1    0.0    0.0     0.0    0.0
+ CAF:makePaths_startingPiece                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:31:7-19                       3129          0    0.0    0.0     0.0    0.0
+  makePaths                                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(27,1)-(35,47)                3166          0    0.0    0.0     0.0    0.0
+   makePaths.startingPiece                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:31:7-29                       3167          1    0.0    0.0     0.0    0.0
+ CAF:makePaths_startingPosition                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:30:7-22                       3130          0    0.0    0.0     0.0    0.0
+  makePaths                                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(27,1)-(35,47)                3168          0    0.0    0.0     0.0    0.0
+   makePaths.startingPosition                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:30:7-31                       3169          1    0.0    0.0     0.0    0.0
+ CAF:newTFGen1                                   System.Random.TF.Init             <no location info>                                       3010          0    0.0    0.0     0.0    0.0
+  newTFGen                                       System.Random.TF.Init             src/System/Random/TF/Init.hs:82:1-43                     3199          1    0.0    0.0     0.0    0.0
+ CAF:test14                                      Puzzles.TrainTracks               <no location info>                                       3145          0    0.0    0.0     0.0    0.0
+  test2                                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(113,1)-(120,60)              3160          0    0.0    0.0     0.0    0.0
+   makePaths                                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(27,1)-(35,47)                3161          1    0.0    0.0     0.0    0.0
+    findPaths                                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(76,1)-(87,36)                3172          1    0.0    0.0     0.0    0.0
+     >>=                                         Polysemy.Internal                 src/Polysemy/Internal.hs:(266,3)-(268,18)                3173          1    0.0    0.0     0.0    0.0
+      >>=.\                                      Polysemy.Internal                 src/Polysemy/Internal.hs:(266,30)-(268,18)               3327          0    0.0    0.0     0.0    0.0
+       findPaths.nextPositionIs'                 Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:80:7-75                       3328          1    0.0    0.0     0.0    0.0
+     findPaths.currentPosition                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:77:7-76                       3332          1    0.0    0.0     0.0    0.0
+      add                                        Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:61:1-42                       3334          1    0.0    0.0     0.0    0.0
+      getDelta                                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(50,1)-(53,23)                3333          1    0.0    0.0     0.0    0.0
+     findPaths.directionPieces                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:78:7-63                       3235          1    0.0    0.0     0.0    0.0
+      getDirectionPieces                         Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(55,1)-(58,57)                3236          1    0.0    0.0     0.0    0.0
+     shuffle                                     Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3178          1    0.0    0.0     0.0    0.0
+ CAF:test15                                      Puzzles.TrainTracks               <no location info>                                       3147          0    0.0    0.0     0.0    0.0
+  test2                                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(113,1)-(120,60)              3157          0    0.0    0.0     0.0    0.0
+   runFisherYatesIO                              Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3158          1    0.0    0.0     0.0    0.0
+ CAF:test2_cols                                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:115:7-10                      3108          0    0.0    0.0     0.0    0.0
+  test2                                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(113,1)-(120,60)              3346          0    0.0    0.0     0.0    0.0
+   test2.cols                                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:115:7-14                      3347          1    0.0    0.0     0.0    0.0
+ CAF:test2_rows                                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:114:7-10                      3109          0    0.0    0.0     0.0    0.0
+  test2                                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(113,1)-(120,60)              3344          0    0.0    0.0     0.0    0.0
+   test2.rows                                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:114:7-14                      3345          1    0.0    0.0     0.0    0.0
+ CAF:test8                                       Puzzles.TrainTracks               <no location info>                                       3148          0    0.0    0.0     0.0    0.0
+  test2                                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(113,1)-(120,60)              3155          1    0.0    0.0     0.0    0.0
+ CAF:theTFGen                                    System.Random.TF.Init             src/System/Random/TF/Init.hs:86:1-8                      3009          0    0.0    0.0     0.1    0.0
+  theTFGen                                       System.Random.TF.Init             src/System/Random/TF/Init.hs:(86,1)-(88,15)              3201          1    0.0    0.0     0.1    0.0
+   initTFGen                                     System.Random.TF.Init             src/System/Random/TF/Init.hs:(66,1)-(72,22)              3203          0    0.0    0.0     0.1    0.0
+    seedTFGen                                    System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(184,1)-(187,9)              3287          1    0.0    0.0     0.0    0.0
+     createBlock256                              System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(41,1)-(47,26)               3288          1    0.0    0.0     0.0    0.0
+      primitive                                  Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3289          6    0.0    0.0     0.0    0.0
+       writeByteArray#                           Data.Primitive.Types              Data/Primitive/Types.hs:264:138-209                      3290          4    0.0    0.0     0.0    0.0
+     mkTFGen                                     System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(133,1)-(134,36)             3291          1    0.0    0.0     0.0    0.0
+    mkSeedTime                                   System.Random.TF.Init             src/System/Random/TF/Init.hs:(33,1)-(45,25)              3205          0    0.0    0.0     0.1    0.0
+     mkSeedTime.c1                               System.Random.TF.Init             src/System/Random/TF/Init.hs:44:7-27                     3286          1    0.0    0.0     0.0    0.0
+     mkSeedTime.d1                               System.Random.TF.Init             src/System/Random/TF/Init.hs:42:7-27                     3284          1    0.0    0.0     0.0    0.0
+     mkSeedTime.day                              System.Random.TF.Init             src/System/Random/TF/Init.hs:40:7-47                     3285          1    0.0    0.0     0.0    0.0
+     mkSeedTime.daytime                          System.Random.TF.Init             src/System/Random/TF/Init.hs:36:7-46                     3282          1    0.1    0.0     0.1    0.0
+     mkSeedTime.t1                               System.Random.TF.Init             src/System/Random/TF/Init.hs:38:7-43                     3281          1    0.0    0.0     0.0    0.0
+     mkSeedTime.t2                               System.Random.TF.Init             src/System/Random/TF/Init.hs:39:7-45                     3283          1    0.0    0.0     0.0    0.0
+ test2                                           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(113,1)-(120,60)              3156          0    0.0    0.0    99.7  100.0
+  makeGridFromPath                               Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(98,1)-(100,117)              3565          1    0.0    0.0     0.0    0.0
+   makeGridFromPath.positionMap                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:99:7-94                       3568          1    0.0    0.0     0.0    0.0
+    toChar                                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(90,1)-(95,21)                3570         19    0.0    0.0     0.0    0.0
+   toText                                        Relude.String.Conversion          src/Relude/String/Conversion.hs:137:5-19                 3567          0    0.0    0.0     0.0    0.0
+  test2.path                                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:117:7-62                      3524          1    0.0    0.0     0.0    0.0
+  makePaths                                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(27,1)-(35,47)                3174          0    0.0    0.0    98.8   97.9
+   findPaths                                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(76,1)-(87,36)                3175      76871    1.2    8.9    98.8   97.9
+    >>=                                          Polysemy.Internal                 src/Polysemy/Internal.hs:(266,3)-(268,18)                3176     614967    0.7    0.0    96.4   87.0
+     >>=.\                                       Polysemy.Internal                 src/Polysemy/Internal.hs:(266,30)-(268,18)               3177     691843    5.2   10.6    95.7   87.0
+      fmap                                       Polysemy.Internal                 src/Polysemy/Internal.hs:250:3-43                        3218     307482    0.6    0.0    88.0   69.5
+       fmap.\                                    Polysemy.Internal                 src/Polysemy/Internal.hs:250:32-43                       3219     307484    2.7    3.5    87.4   69.5
+        <*>                                      Polysemy.Internal                 src/Polysemy/Internal.hs:258:3-43                        3350     153738    1.0    1.0    82.1   64.3
+         <*>.\                                   Polysemy.Internal                 src/Polysemy/Internal.hs:258:33-43                       3351     153740    5.4    4.2    81.0   63.3
+          runSem                                 Polysemy.Internal                 src/Polysemy/Internal.hs:195:5-10                        3375     691835    3.5    1.5    23.6    8.1
+           pure                                  Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3385     384355    2.0    2.3     2.0    2.3
+           findPaths.toFreePieces                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:84:7-83                       3488      76869    1.4    0.6    17.8    3.8
+            findPaths.toFreePieces.\             Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:84:40-67                      3489     230607    0.3    0.0    16.4    3.2
+             findPaths.nextPositionIs'           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:80:7-75                       3490          0    0.3    0.0    16.1    3.2
+              nextPositionIs                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(71,1)-(73,18)                3491     230607    0.9    1.2    15.8    3.2
+               findPaths.isFree                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:7-155                      3500     230607    9.6    0.0    11.4    0.0
+                findPaths.isFree.\               Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:65-142                     3501    2142594    1.9    0.0     1.9    0.0
+               nextPositionIs.nextPos            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:72:7-56                       3492     230607    0.4    0.0     3.5    2.0
+                getNextPosition                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(64,1)-(68,18)                3493     230607    1.0    0.0     3.0    2.0
+                 getNextPosition.delta           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:66:7-36                       3496     230607    0.1    0.0     0.1    0.0
+                  getDelta                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(50,1)-(53,23)                3497     230607    0.0    0.0     0.0    0.0
+                 getNextPosition.nextDirection   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:65:7-54                       3494     230607    0.3    0.0     0.3    0.0
+                  getNextDirection               Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3495     230607    0.0    0.0     0.0    0.0
+                 getNextPosition.nextPosition    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:67:7-39                       3498     230607    1.0    1.5     1.6    2.0
+                  add                            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:61:1-42                       3499     230607    0.6    0.5     0.6    0.5
+           pureT                                 Polysemy.Internal.Tactics         src/Polysemy/Internal/Tactics.hs:(128,1)-(130,20)        3483      76869    0.3    0.5     0.3    0.5
+           findPaths.completedPaths              Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:86:7-143                      3531         21    0.0    0.0     0.0    0.0
+           findPaths.toEdgePieces                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:83:7-83                       3550         20    0.0    0.0     0.0    0.0
+            findPaths.toEdgePieces.\             Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:83:40-67                      3551         58    0.0    0.0     0.0    0.0
+             findPaths.nextPositionIs'           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:80:7-75                       3552          0    0.0    0.0     0.0    0.0
+              nextPositionIs                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(71,1)-(73,18)                3553         58    0.0    0.0     0.0    0.0
+               nextPositionIs.nextPos            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:72:7-56                       3555         58    0.0    0.0     0.0    0.0
+                getNextPosition                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(64,1)-(68,18)                3556         58    0.0    0.0     0.0    0.0
+                 getNextPosition.delta           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:66:7-36                       3559         58    0.0    0.0     0.0    0.0
+                  getDelta                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(50,1)-(53,23)                3560         58    0.0    0.0     0.0    0.0
+                 getNextPosition.nextDirection   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:65:7-54                       3557         58    0.0    0.0     0.0    0.0
+                  getNextDirection               Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3558         58    0.0    0.0     0.0    0.0
+                 getNextPosition.nextPosition    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:67:7-39                       3561         58    0.0    0.0     0.0    0.0
+                  add                            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:61:1-42                       3562         58    0.0    0.0     0.0    0.0
+               findPaths.\                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:85:43-156                     3554          0    0.0    0.0     0.0    0.0
+                findPaths.isEdge                 Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:81:7-78                       3563         58    0.0    0.0     0.0    0.0
+          pure                                   Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3509          0    0.3    0.6     0.3    0.6
+          runFisherYatesIO                       Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3369          0    0.7    0.9    51.8   50.4
+           unEmbed                               Polysemy.Embed.Type               src/Polysemy/Embed/Type.hs:36:14-20                      3370      76871    0.0    0.0     0.0    0.0
+           runFisherYatesIO.\                    Effects.Shuffle                   src/Effects/Shuffle.hs:28:17-37                          3371          0    0.0    0.0    51.1   49.5
+            shuffle                              System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:18:1-29         3372          0    0.0    0.0    51.1   49.5
+             inIO                                System.Random.Rando.Internal      src/System/Random/Rando/Internal.hs:(10,1)-(13,9)        3373          0    0.6    0.3    51.1   49.5
+              inIO.(...)                         System.Random.Rando.Internal      src/System/Random/Rando/Internal.hs:12:8-19              3388      76871    0.0    0.0    42.7   39.2
+               shuffle'                          System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(22,1)-(38,37)  3389      76871   15.2   10.5    42.7   39.2
+                unId                             Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:25:21-24                      3397     614968    0.0    0.0     0.0    0.0
+                basicLength                      Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3402     461226    0.0    0.0     0.0    0.0
+                >>=                              Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:36:3-18                       3398     307484    0.6    1.0     5.2    4.2
+                 fmap                            Data.Vector.Fusion.Stream.Monadic Data/Vector/Fusion/Stream/Monadic.hs:(133,3)-(135,20)    3399     307484    2.3    2.0     4.6    3.2
+                  basicUnsafeWrite               Data.Vector.Mutable               Data/Vector/Mutable.hs:118:3-65                          3413     230613    1.4    1.2     2.3    1.2
+                   primitive                     Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3415          0    0.9    0.0     0.9    0.0
+                    marray#                      Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3416     230613    0.0    0.0     0.0    0.0
+                basicUnsafeSlice                 Data.Vector.Mutable               Data/Vector/Mutable.hs:89:3-62                           3414     307484    0.6    1.0     0.6    1.0
+                basicUnsafeGrow                  Data.Vector.Generic.Mutable.Base  Data/Vector/Generic/Mutable/Base.hs:(138,3)-(144,23)     3405     230613    1.7    1.0     7.2    6.0
+                 basicUnsafeCopy                 Data.Vector.Mutable               Data/Vector/Mutable.hs:(121,3)-(122,36)                  3411     230613    0.1    1.2     2.9    1.2
+                  primitive                      Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3412     230613    2.7    0.0     2.7    0.0
+                 basicUnsafeGrow.n               Data.Vector.Generic.Mutable.Base  Data/Vector/Generic/Mutable/Base.hs:144:7-23             3407     230613    0.3    0.5     0.3    0.5
+                  basicLength                    Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3408     230613    0.0    0.0     0.0    0.0
+                 basicUnsafeNew                  Data.Vector.Mutable               Data/Vector/Mutable.hs:(99,3)-(102,32)                   3406     230613    1.2    1.2     2.3    3.3
+                  primitive                      Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3409     230613    1.2    2.1     1.2    2.1
+                 basicUnsafeSlice                Data.Vector.Mutable               Data/Vector/Mutable.hs:89:3-62                           3410     230613    0.0    0.0     0.0    0.0
+                basicUnsafeIndexM                Data.Vector                       Data/Vector.hs:277:3-62                                  3463     230613    1.0    0.5     1.0    0.5
+                 array#                          Data.Primitive.Array              Data/Primitive/Array.hs:79:5-10                          3464     230613    0.0    0.0     0.0    0.0
+                enlarge_delta                    Data.Vector.Generic.Mutable       Data/Vector/Generic/Mutable.hs:636:1-34                  3403     230613    0.3    0.5     0.3    0.5
+                 basicLength                     Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3404     230613    0.0    0.0     0.0    0.0
+                shuffle'.\                       System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(30,47)-(33,38) 3419     153742    2.0    0.0    11.9   15.5
+                 basicUnsafeRead                 Data.Vector.Mutable               Data/Vector/Mutable.hs:115:3-59                          3450     307484    0.3    1.3     1.4    1.3
+                  primitive                      Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3451     307484    1.2    0.0     1.2    0.0
+                   marray#                       Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3452     307484    0.0    0.0     0.0    0.0
+                 basicUnsafeWrite                Data.Vector.Mutable               Data/Vector/Mutable.hs:118:3-65                          3453     307484    0.7    1.6     1.9    1.6
+                  primitive                      Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3454     307484    1.2    0.0     1.2    0.0
+                   marray#                       Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3455     307484    0.0    0.0     0.0    0.0
+                 randSTFromZero                  System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(43,1)-(47,9)   3420     153742    0.7    0.8     6.5   12.5
+                  randSTFromZero.(...)           System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:45:8-39         3421     153742    0.1    0.0     5.8   11.7
+                   randomR                       System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(201,3)-(202,76)       3422     153742    0.3    0.0     5.6   11.7
+                    randomR.(...)                System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76              3423     153742    0.3    1.3     5.4   11.7
+                     randomR                     System.Random.TF.Instances        src/System/Random/TF/Instances.hs:238:3-23               3424          0    0.1    0.0     5.1   10.4
+                      randomInt64                System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(112,1)-(115,54)       3425     153742    0.4    0.0     4.9   10.4
+                       boundsWrap                System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(54,1)-(58,34)         3426     153742    0.4    1.2     4.5   10.4
+                        boundsWrap.mapFst        System.Random.TF.Instances        src/System/Random/TF/Instances.hs:58:9-34                3447     153742    0.1    0.3     0.1    0.3
+                        randomInt64.randomInt64' System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(114,3)-(115,54)       3427     153742    0.7    2.1     3.9    8.9
+                         randomWord64'           System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(119,1)-(150,36)       3428     153742    0.6    1.0     3.2    6.8
+                          randomWord64'.\        System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(122,5)-(123,41)       3429     153742    0.7    1.6     2.6    5.8
+                           word32Mask            System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(70,1)-(73,38)         3445      76871    0.6    0.2     0.6    0.2
+                            word32Mask..>.       System.Random.TF.Instances        src/System/Random/TF/Instances.hs:73:3-38                3446     384355    0.0    0.0     0.0    0.0
+                           next                  System.Random.TF.Gen              src/System/Random/TF/Gen.hs:253:3-20                     3431          0    1.2    3.7     1.3    4.0
+                            extract              System.Random.TF.Gen              src/System/Random/TF/Gen.hs:137:1-32                     3438     179300    0.0    0.0     0.1    0.4
+                             indexByteArray#     Data.Primitive.Types              Data/Primitive/Types.hs:261:26-138                       3444     179300    0.1    0.4     0.1    0.4
+                            mkTFGen              System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(133,1)-(134,36)             3517          5    0.0    0.0     0.0    0.0
+                             mash                System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(117,1)-(126,29)             3518          5    0.0    0.0     0.0    0.0
+                              primitive          Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3522         10    0.0    0.0     0.0    0.0
+                              createBlock256     System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(41,1)-(47,26)               3519          5    0.0    0.0     0.0    0.0
+                               primitive         Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3520         30    0.0    0.0     0.0    0.0
+                                writeByteArray#  Data.Primitive.Types              Data/Primitive/Types.hs:264:138-209                      3521         20    0.0    0.0     0.0    0.0
+                          randomWord64'.m32      System.Random.TF.Instances        src/System/Random/TF/Instances.hs:141:3-41               3430     153742    0.0    0.0     0.0    0.0
+                    randomR.x                    System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76              3448     153742    0.0    0.0     0.0    0.0
+                    randomR.rng'                 System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76              3457      76871    0.0    0.0     0.0    0.0
+                  randSTFromZero.x               System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:45:8-39         3449     153742    0.0    0.0     0.0    0.0
+                  randSTFromZero.g1              System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:45:8-39         3456      76871    0.0    0.0     0.0    0.0
+                basicLength                      Data.Vector                       Data/Vector.hs:271:3-32                                  3462      76871    0.0    0.0     0.0    0.0
+                basicUnsafeFreeze                Data.Vector                       Data/Vector.hs:(263,3)-(264,47)                          3458      76871    0.4    0.4     1.0    0.6
+                 primitive                       Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3459      76871    0.6    0.2     0.6    0.2
+                  marray#                        Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3460      76871    0.0    0.0     0.0    0.0
+                basicUnsafeNew                   Data.Vector.Mutable               Data/Vector/Mutable.hs:(99,3)-(102,32)                   3394      76871    0.3    0.2     0.3    0.2
+                 primitive                       Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3395      76871    0.0    0.0     0.0    0.0
+                internal                         Control.Monad.Primitive           Control/Monad/Primitive.hs:198:3-21                      3391      76871    0.0    0.0     0.0    0.0
+                primitive                        Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3390      76871    0.0    0.0     0.0    0.0
+                sChunks                          Data.Vector.Fusion.Bundle.Monadic Data/Vector/Fusion/Bundle/Monadic.hs:122:30-36           3396      76871    0.0    0.0     0.0    0.0
+                sSize                            Data.Vector.Fusion.Bundle.Monadic Data/Vector/Fusion/Bundle/Monadic.hs:124:30-34           3393      76871    0.0    0.0     0.0    0.0
+                shuffle'.vLen                    System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:28:11-28        3417      76871    0.0    0.2     0.0    0.2
+                 basicLength                     Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3418      76871    0.0    0.0     0.0    0.0
+                upperBound                       Data.Vector.Fusion.Bundle.Size    Data/Vector/Fusion/Bundle/Size.hs:(118,1)-(120,30)       3392      76871    0.0    0.0     0.0    0.0
+              inIO.x                             System.Random.Rando.Internal      src/System/Random/Rando/Internal.hs:12:8-19              3461      76871    0.0    0.0     0.0    0.0
+              newTFGen                           System.Random.TF.Init             src/System/Random/TF/Init.hs:82:1-43                     3374          0    0.9    0.8     7.8   10.0
+               split                             System.Random.TF.Gen              src/System/Random/TF/Gen.hs:254:3-21                     3432          0    0.7    0.2     6.9    9.2
+                tfGenSplit                       System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(166,1)-(173,35)             3433      76871    1.6    1.7     6.2    9.0
+                 mkTFGen                         System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(133,1)-(134,36)             3436     153741    0.1    2.0     4.6    7.2
+                  mash                           System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(117,1)-(126,29)             3439      76871    0.9    1.0     4.5    5.2
+                   primitive                     Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3443     153742    0.4    0.8     0.4    0.8
+                   createBlock256                System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(41,1)-(47,26)               3440      76871    1.2    2.6     3.2    3.4
+                    primitive                    Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3441     461226    2.0    0.8     2.0    0.8
+                     writeByteArray#             Data.Primitive.Types              Data/Primitive/Types.hs:264:138-209                      3442     307484    0.0    0.0     0.0    0.0
+                 tfGenSplit.maxb                 System.Random.TF.Gen              src/System/Random/TF/Gen.hs:170:3-11                     3434      76871    0.0    0.0     0.0    0.0
+                 tfGenSplit.b''                  System.Random.TF.Gen              src/System/Random/TF/Gen.hs:173:3-35                     3435      75670    0.0    0.0     0.0    0.0
+                 tfGenSplit.bi'                  System.Random.TF.Gen              src/System/Random/TF/Gen.hs:171:3-15                     3437      75670    0.0    0.0     0.0    0.0
+                 tfGenSplit.k'                   System.Random.TF.Gen              src/System/Random/TF/Gen.hs:172:3-20                     3510       1201    0.0    0.0     0.0    0.1
+                  mash'                          System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(129,1)-(130,19)             3511       1201    0.0    0.0     0.0    0.1
+                   mash                          System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(117,1)-(126,29)             3512       1201    0.0    0.0     0.0    0.1
+                    primitive                    Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3516       2402    0.0    0.0     0.0    0.0
+                    createBlock256               System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(41,1)-(47,26)               3513       1201    0.0    0.0     0.0    0.1
+                     primitive                   Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3514       7206    0.0    0.0     0.0    0.0
+                      writeByteArray#            Data.Primitive.Types              Data/Primitive/Types.hs:264:138-209                      3515       4804    0.0    0.0     0.0    0.0
+        findPaths.\                              Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:85:43-156                     3358      76869    2.3    1.5     2.3    1.5
+         getNextDirection                        Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3481      76869    0.0    0.0     0.0    0.0
+        pure                                     Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3508          0    0.3    0.2     0.3    0.2
+      pure                                       Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3507      76872    0.1    0.6     0.1    0.6
+      findPaths.nextPositionIs'                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:80:7-75                       3329      76871    0.0    0.0     0.0    0.0
+       nextPositionIs                            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(71,1)-(73,18)                3330          6    0.0    0.0     0.0    0.0
+        nextPositionIs.nextPos                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:72:7-56                       3331          6    0.0    0.0     0.0    0.0
+         getNextPosition                         Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(64,1)-(68,18)                3335          6    0.0    0.0     0.0    0.0
+          getNextPosition.delta                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:66:7-36                       3338          6    0.0    0.0     0.0    0.0
+           getDelta                              Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(50,1)-(53,23)                3339          6    0.0    0.0     0.0    0.0
+          getNextPosition.nextDirection          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:65:7-54                       3336          6    0.0    0.0     0.0    0.0
+           getNextDirection                      Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3337          6    0.0    0.0     0.0    0.0
+          getNextPosition.nextPosition           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:67:7-39                       3340          6    0.0    0.0     0.0    0.0
+           add                                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:61:1-42                       3341          6    0.0    0.0     0.0    0.0
+      runSem                                     Polysemy.Internal                 src/Polysemy/Internal.hs:195:5-10                        3206         13    0.0    0.0     0.3    0.0
+       pure                                      Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3217          5    0.3    0.0     0.3    0.0
+       pureT                                     Polysemy.Internal.Tactics         src/Polysemy/Internal/Tactics.hs:(128,1)-(130,20)        3209          3    0.0    0.0     0.0    0.0
+       findPaths.completedPaths                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:86:7-143                      3525          1    0.0    0.0     0.0    0.0
+       findPaths.toEdgePieces                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:83:7-83                       3526          1    0.0    0.0     0.0    0.0
+       findPaths.toFreePieces                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:84:7-83                       3220          1    0.0    0.0     0.0    0.0
+       shuffle                                   Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3207          0    0.0    0.0     0.0    0.0
+        runFisherYatesIO                         Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3208          0    0.0    0.0     0.0    0.0
+      findPaths.toFreePieces                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:84:7-83                       3387          2    0.0    0.0     0.0    0.0
+       findPaths.toFreePieces.\                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:84:40-67                      3465          6    0.0    0.0     0.0    0.0
+        findPaths.nextPositionIs'                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:80:7-75                       3466          0    0.0    0.0     0.0    0.0
+         nextPositionIs                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(71,1)-(73,18)                3467          6    0.0    0.0     0.0    0.0
+          findPaths.isFree                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:7-155                      3479          6    0.0    0.0     0.0    0.0
+           findPaths.isFree.\                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:65-142                     3480         11    0.0    0.0     0.0    0.0
+          nextPositionIs.nextPos                 Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:72:7-56                       3468          6    0.0    0.0     0.0    0.0
+           getNextPosition                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(64,1)-(68,18)                3472          6    0.0    0.0     0.0    0.0
+            getNextPosition.delta                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:66:7-36                       3475          6    0.0    0.0     0.0    0.0
+             getDelta                            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(50,1)-(53,23)                3476          6    0.0    0.0     0.0    0.0
+            getNextPosition.nextDirection        Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:65:7-54                       3473          6    0.0    0.0     0.0    0.0
+             getNextDirection                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3474          6    0.0    0.0     0.0    0.0
+            getNextPosition.nextPosition         Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:67:7-39                       3477          6    0.0    0.0     0.0    0.0
+             add                                 Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:61:1-42                       3478          6    0.0    0.0     0.0    0.0
+      findPaths.toEdgePieces                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:83:7-83                       3532          1    0.0    0.0     0.0    0.0
+       findPaths.toEdgePieces.\                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:83:40-67                      3533          3    0.0    0.0     0.0    0.0
+        findPaths.nextPositionIs'                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:80:7-75                       3534          0    0.0    0.0     0.0    0.0
+         nextPositionIs                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(71,1)-(73,18)                3535          3    0.0    0.0     0.0    0.0
+          nextPositionIs.nextPos                 Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:72:7-56                       3541          3    0.0    0.0     0.0    0.0
+           getNextPosition                       Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(64,1)-(68,18)                3542          3    0.0    0.0     0.0    0.0
+            getNextPosition.delta                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:66:7-36                       3545          3    0.0    0.0     0.0    0.0
+             getDelta                            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(50,1)-(53,23)                3546          3    0.0    0.0     0.0    0.0
+            getNextPosition.nextDirection        Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:65:7-54                       3543          3    0.0    0.0     0.0    0.0
+             getNextDirection                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3544          3    0.0    0.0     0.0    0.0
+            getNextPosition.nextPosition         Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:67:7-39                       3547          3    0.0    0.0     0.0    0.0
+             add                                 Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:61:1-42                       3548          3    0.0    0.0     0.0    0.0
+          <*>                                    Polysemy.Internal                 src/Polysemy/Internal.hs:258:3-43                        3536          0    0.0    0.0     0.0    0.0
+           <*>.\                                 Polysemy.Internal                 src/Polysemy/Internal.hs:258:33-43                       3537          0    0.0    0.0     0.0    0.0
+            fmap                                 Polysemy.Internal                 src/Polysemy/Internal.hs:250:3-43                        3538          0    0.0    0.0     0.0    0.0
+             fmap.\                              Polysemy.Internal                 src/Polysemy/Internal.hs:250:32-43                       3539          0    0.0    0.0     0.0    0.0
+              findPaths.\                        Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:85:43-156                     3540          0    0.0    0.0     0.0    0.0
+               findPaths.isEdge                  Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:81:7-78                       3549          3    0.0    0.0     0.0    0.0
+      unEmbed                                    Polysemy.Embed.Type               src/Polysemy/Embed/Type.hs:36:14-20                      3194          1    0.0    0.0     0.0    0.0
+      <*>                                        Polysemy.Internal                 src/Polysemy/Internal.hs:258:3-43                        3361          0    0.0    0.0     0.0    0.0
+       <*>.\                                     Polysemy.Internal                 src/Polysemy/Internal.hs:258:33-43                       3362          0    0.0    0.0     0.0    0.0
+        fmap                                     Polysemy.Internal                 src/Polysemy/Internal.hs:250:3-43                        3363          0    0.0    0.0     0.0    0.0
+         fmap.\                                  Polysemy.Internal                 src/Polysemy/Internal.hs:250:32-43                       3364          0    0.0    0.0     0.0    0.0
+          findPaths.\                            Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:85:43-156                     3365          0    0.0    0.0     0.0    0.0
+      findPaths.completedPaths                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:86:7-143                      3529          0    0.0    0.0     0.0    0.0
+       findPaths.completedPaths.\                Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:86:39-129                     3564         16    0.0    0.0     0.0    0.0
+        getNextDirection                         Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3569          1    0.0    0.0     0.0    0.0
+      getInitialStateT                           Polysemy.Internal.Tactics         src/Polysemy/Internal/Tactics.hs:90:1-63                 3211          0    0.0    0.0     0.3    1.5
+       <*>                                       Polysemy.Internal                 src/Polysemy/Internal.hs:258:3-43                        3376          0    0.0    0.0     0.0    0.0
+        <*>.\                                    Polysemy.Internal                 src/Polysemy/Internal.hs:258:33-43                       3377          0    0.0    0.0     0.0    0.0
+         fmap                                    Polysemy.Internal                 src/Polysemy/Internal.hs:250:3-43                        3378          0    0.0    0.0     0.0    0.0
+          fmap.\                                 Polysemy.Internal                 src/Polysemy/Internal.hs:250:32-43                       3379          0    0.0    0.0     0.0    0.0
+           findPaths.\                           Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:85:43-156                     3380          0    0.0    0.0     0.0    0.0
+       shuffle                                   Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3212          0    0.0    0.0     0.3    1.5
+        runFisherYatesIO                         Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3213          0    0.1    0.7     0.3    1.5
+         pure                                    Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3216      76870    0.1    0.8     0.1    0.8
+      runFisherYatesIO                           Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3195          0    0.3    1.8     0.9    3.3
+       runFisherYatesIO.\                        Effects.Shuffle                   src/Effects/Shuffle.hs:28:17-37                          3196          0    0.6    1.5     0.6    1.5
+        shuffle                                  Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3482          0    0.0    0.0     0.0    0.0
+        shuffle                                  System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:18:1-29         3197          0    0.0    0.0     0.0    0.0
+         inIO                                    System.Random.Rando.Internal      src/System/Random/Rando/Internal.hs:(10,1)-(13,9)        3198          0    0.0    0.0     0.0    0.0
+          inIO.(...)                             System.Random.Rando.Internal      src/System/Random/Rando/Internal.hs:12:8-19              3221          1    0.0    0.0     0.0    0.0
+           shuffle'                              System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(22,1)-(38,37)  3222          1    0.0    0.0     0.0    0.0
+            unId                                 Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:25:21-24                      3230          8    0.0    0.0     0.0    0.0
+            basicLength                          Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3237          6    0.0    0.0     0.0    0.0
+            >>=                                  Data.Vector.Fusion.Util           Data/Vector/Fusion/Util.hs:36:3-18                       3231          4    0.0    0.0     0.0    0.0
+             fmap                                Data.Vector.Fusion.Stream.Monadic Data/Vector/Fusion/Stream/Monadic.hs:(133,3)-(135,20)    3234          4    0.0    0.0     0.0    0.0
+              basicUnsafeWrite                   Data.Vector.Mutable               Data/Vector/Mutable.hs:118:3-65                          3250          3    0.0    0.0     0.0    0.0
+               primitive                         Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3253          0    0.0    0.0     0.0    0.0
+                marray#                          Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3254          3    0.0    0.0     0.0    0.0
+            basicUnsafeSlice                     Data.Vector.Mutable               Data/Vector/Mutable.hs:89:3-62                           3251          4    0.0    0.0     0.0    0.0
+            basicUnsafeGrow                      Data.Vector.Generic.Mutable.Base  Data/Vector/Generic/Mutable/Base.hs:(138,3)-(144,23)     3241          3    0.0    0.0     0.0    0.0
+             basicUnsafeCopy                     Data.Vector.Mutable               Data/Vector/Mutable.hs:(121,3)-(122,36)                  3247          3    0.0    0.0     0.0    0.0
+              primitive                          Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3248          3    0.0    0.0     0.0    0.0
+             basicUnsafeGrow.n                   Data.Vector.Generic.Mutable.Base  Data/Vector/Generic/Mutable/Base.hs:144:7-23             3243          3    0.0    0.0     0.0    0.0
+              basicLength                        Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3244          3    0.0    0.0     0.0    0.0
+             basicUnsafeNew                      Data.Vector.Mutable               Data/Vector/Mutable.hs:(99,3)-(102,32)                   3242          3    0.0    0.0     0.0    0.0
+              primitive                          Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3245          3    0.0    0.0     0.0    0.0
+             basicUnsafeSlice                    Data.Vector.Mutable               Data/Vector/Mutable.hs:89:3-62                           3246          3    0.0    0.0     0.0    0.0
+            basicUnsafeIndexM                    Data.Vector                       Data/Vector.hs:277:3-62                                  3322          3    0.0    0.0     0.0    0.0
+             array#                              Data.Primitive.Array              Data/Primitive/Array.hs:79:5-10                          3323          3    0.0    0.0     0.0    0.0
+            enlarge_delta                        Data.Vector.Generic.Mutable       Data/Vector/Generic/Mutable.hs:636:1-34                  3238          3    0.0    0.0     0.0    0.0
+             basicLength                         Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3239          3    0.0    0.0     0.0    0.0
+            shuffle'.\                           System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(30,47)-(33,38) 3258          2    0.0    0.0     0.0    0.0
+             basicUnsafeRead                     Data.Vector.Mutable               Data/Vector/Mutable.hs:115:3-59                          3309          4    0.0    0.0     0.0    0.0
+              primitive                          Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3310          4    0.0    0.0     0.0    0.0
+               marray#                           Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3311          4    0.0    0.0     0.0    0.0
+             basicUnsafeWrite                    Data.Vector.Mutable               Data/Vector/Mutable.hs:118:3-65                          3312          4    0.0    0.0     0.0    0.0
+              primitive                          Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3313          4    0.0    0.0     0.0    0.0
+               marray#                           Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3314          4    0.0    0.0     0.0    0.0
+             randSTFromZero                      System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:(43,1)-(47,9)   3259          2    0.0    0.0     0.0    0.0
+              randSTFromZero.(...)               System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:45:8-39         3260          2    0.0    0.0     0.0    0.0
+               randomR                           System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(201,3)-(202,76)       3261          2    0.0    0.0     0.0    0.0
+                randomR.(...)                    System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76              3262          2    0.0    0.0     0.0    0.0
+                 randomR                         System.Random.TF.Instances        src/System/Random/TF/Instances.hs:238:3-23               3270          0    0.0    0.0     0.0    0.0
+                  randomInt64                    System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(112,1)-(115,54)       3271          2    0.0    0.0     0.0    0.0
+                   boundsWrap                    System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(54,1)-(58,34)         3272          2    0.0    0.0     0.0    0.0
+                    boundsWrap.mapFst            System.Random.TF.Instances        src/System/Random/TF/Instances.hs:58:9-34                3306          2    0.0    0.0     0.0    0.0
+                    randomInt64.randomInt64'     System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(114,3)-(115,54)       3273          2    0.0    0.0     0.0    0.0
+                     randomWord64'               System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(119,1)-(150,36)       3274          2    0.0    0.0     0.0    0.0
+                      randomWord64'.\            System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(122,5)-(123,41)       3275          2    0.0    0.0     0.0    0.0
+                       word32Mask                System.Random.TF.Instances        src/System/Random/TF/Instances.hs:(70,1)-(73,38)         3304          1    0.0    0.0     0.0    0.0
+                        word32Mask..>.           System.Random.TF.Instances        src/System/Random/TF/Instances.hs:73:3-38                3305          5    0.0    0.0     0.0    0.0
+                       next                      System.Random.TF.Gen              src/System/Random/TF/Gen.hs:253:3-20                     3278          0    0.0    0.0     0.0    0.0
+                        extract                  System.Random.TF.Gen              src/System/Random/TF/Gen.hs:137:1-32                     3297          2    0.0    0.0     0.0    0.0
+                         indexByteArray#         Data.Primitive.Types              Data/Primitive/Types.hs:261:26-138                       3303          2    0.0    0.0     0.0    0.0
+                      randomWord64'.m32          System.Random.TF.Instances        src/System/Random/TF/Instances.hs:141:3-41               3276          2    0.0    0.0     0.0    0.0
+                randomR.x                        System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76              3307          2    0.0    0.0     0.0    0.0
+                randomR.rng'                     System.Random.TF.Instances        src/System/Random/TF/Instances.hs:202:11-76              3316          1    0.0    0.0     0.0    0.0
+              randSTFromZero.x                   System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:45:8-39         3308          2    0.0    0.0     0.0    0.0
+              randSTFromZero.g1                  System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:45:8-39         3315          1    0.0    0.0     0.0    0.0
+            basicLength                          Data.Vector                       Data/Vector.hs:271:3-32                                  3321          1    0.0    0.0     0.0    0.0
+            basicUnsafeFreeze                    Data.Vector                       Data/Vector.hs:(263,3)-(264,47)                          3317          1    0.0    0.0     0.0    0.0
+             primitive                           Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3318          1    0.0    0.0     0.0    0.0
+              marray#                            Data.Primitive.Array              Data/Primitive/Array.hs:84:5-11                          3319          1    0.0    0.0     0.0    0.0
+            basicUnsafeNew                       Data.Vector.Mutable               Data/Vector/Mutable.hs:(99,3)-(102,32)                   3227          1    0.0    0.0     0.0    0.0
+             primitive                           Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3228          1    0.0    0.0     0.0    0.0
+            internal                             Control.Monad.Primitive           Control/Monad/Primitive.hs:198:3-21                      3224          1    0.0    0.0     0.0    0.0
+            primitive                            Control.Monad.Primitive           Control/Monad/Primitive.hs:195:3-16                      3223          1    0.0    0.0     0.0    0.0
+            sChunks                              Data.Vector.Fusion.Bundle.Monadic Data/Vector/Fusion/Bundle/Monadic.hs:122:30-36           3229          1    0.0    0.0     0.0    0.0
+            sSize                                Data.Vector.Fusion.Bundle.Monadic Data/Vector/Fusion/Bundle/Monadic.hs:124:30-34           3226          1    0.0    0.0     0.0    0.0
+            shuffle'.vLen                        System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:28:11-28        3256          1    0.0    0.0     0.0    0.0
+             basicLength                         Data.Vector.Mutable               Data/Vector/Mutable.hs:86:3-33                           3257          1    0.0    0.0     0.0    0.0
+            upperBound                           Data.Vector.Fusion.Bundle.Size    Data/Vector/Fusion/Bundle/Size.hs:(118,1)-(120,30)       3225          1    0.0    0.0     0.0    0.0
+          inIO.x                                 System.Random.Rando.Internal      src/System/Random/Rando/Internal.hs:12:8-19              3320          1    0.0    0.0     0.0    0.0
+          newTFGen                               System.Random.TF.Init             src/System/Random/TF/Init.hs:82:1-43                     3200          0    0.0    0.0     0.0    0.0
+           split                                 System.Random.TF.Gen              src/System/Random/TF/Gen.hs:254:3-21                     3280          0    0.0    0.0     0.0    0.0
+            tfGenSplit                           System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(166,1)-(173,35)             3292          1    0.0    0.0     0.0    0.0
+             mkTFGen                             System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(133,1)-(134,36)             3295          2    0.0    0.0     0.0    0.0
+              mash                               System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(117,1)-(126,29)             3298          1    0.0    0.0     0.0    0.0
+               primitive                         Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3302          2    0.0    0.0     0.0    0.0
+               createBlock256                    System.Random.TF.Gen              src/System/Random/TF/Gen.hs:(41,1)-(47,26)               3299          1    0.0    0.0     0.0    0.0
+                primitive                        Control.Monad.Primitive           Control/Monad/Primitive.hs:97:3-16                       3300          6    0.0    0.0     0.0    0.0
+                 writeByteArray#                 Data.Primitive.Types              Data/Primitive/Types.hs:264:138-209                      3301          4    0.0    0.0     0.0    0.0
+             tfGenSplit.b''                      System.Random.TF.Gen              src/System/Random/TF/Gen.hs:173:3-35                     3294          1    0.0    0.0     0.0    0.0
+             tfGenSplit.bi'                      System.Random.TF.Gen              src/System/Random/TF/Gen.hs:171:3-15                     3296          1    0.0    0.0     0.0    0.0
+             tfGenSplit.maxb                     System.Random.TF.Gen              src/System/Random/TF/Gen.hs:170:3-11                     3293          1    0.0    0.0     0.0    0.0
+      shuffle                                    Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3183          0    0.0    0.0     0.9    1.6
+       runFisherYatesIO                          Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3184          0    0.9    1.6     0.9    1.6
+        pure                                     Polysemy.Internal                 src/Polysemy/Internal.hs:255:3-31                        3381          2    0.0    0.0     0.0    0.0
+        runFisherYatesIO.\                       Effects.Shuffle                   src/Effects/Shuffle.hs:28:17-37                          3193          0    0.0    0.0     0.0    0.0
+    findPaths.currentPosition                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:77:7-76                       3469      76871    0.1    0.5     0.3    0.7
+     add                                         Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:61:1-42                       3471      76871    0.1    0.2     0.1    0.2
+     getDelta                                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(50,1)-(53,23)                3470      76871    0.0    0.0     0.0    0.0
+    findPaths.directionPieces                    Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:78:7-63                       3400      76871    0.1    0.0     0.9    0.0
+     getDirectionPieces                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(55,1)-(58,57)                3401      76871    0.7    0.0     0.7    0.0
+    shuffle                                      Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3179      76871    0.1    1.4     0.1    1.4
+     runFisherYatesIO                            Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3180          0    0.0    0.0     0.0    0.0
+      >>=                                        Polysemy.Internal                 src/Polysemy/Internal.hs:(266,3)-(268,18)                3182          2    0.0    0.0     0.0    0.0
+       >>=.\                                     Polysemy.Internal                 src/Polysemy/Internal.hs:(266,30)-(268,18)               3186          1    0.0    0.0     0.0    0.0
+      runFisherYatesIO.\                         Effects.Shuffle                   src/Effects/Shuffle.hs:28:17-37                          3188          0    0.0    0.0     0.0    0.0
+       >>=                                       Polysemy.Internal                 src/Polysemy/Internal.hs:(266,3)-(268,18)                3189          0    0.0    0.0     0.0    0.0
+        >>=.\                                    Polysemy.Internal                 src/Polysemy/Internal.hs:(266,30)-(268,18)               3190          0    0.0    0.0     0.0    0.0
+    <*>                                          Polysemy.Internal                 src/Polysemy/Internal.hs:258:3-43                        3348          4    0.0    0.0     0.0    0.0
+     <*>.\                                       Polysemy.Internal                 src/Polysemy/Internal.hs:258:33-43                       3349          2    0.0    0.0     0.0    0.0
+      fmap                                       Polysemy.Internal                 src/Polysemy/Internal.hs:250:3-43                        3352          4    0.0    0.0     0.0    0.0
+       fmap.\                                    Polysemy.Internal                 src/Polysemy/Internal.hs:250:32-43                       3353          2    0.0    0.0     0.0    0.0
+        findPaths.\                              Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:85:43-156                     3354          2    0.0    0.0     0.0    0.0
+         >>=                                     Polysemy.Internal                 src/Polysemy/Internal.hs:(266,3)-(268,18)                3356          6    0.0    0.0     0.0    0.0
+          >>=.\                                  Polysemy.Internal                 src/Polysemy/Internal.hs:(266,30)-(268,18)               3357          4    0.0    0.0     0.0    0.0
+           runFisherYatesIO                      Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3366          0    0.0    0.0     0.0    0.0
+            runFisherYatesIO.\                   Effects.Shuffle                   src/Effects/Shuffle.hs:28:17-37                          3367          0    0.0    0.0     0.0    0.0
+             shuffle                             Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3368          0    0.0    0.0     0.0    0.0
+           runSem                                Polysemy.Internal                 src/Polysemy/Internal.hs:195:5-10                        3386          0    0.0    0.0     0.0    0.0
+           shuffle                               Effects.Shuffle                   src/Effects/Shuffle.hs:14:1-17                           3359          0    0.0    0.0     0.0    0.0
+            runFisherYatesIO                     Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3360          0    0.0    0.0     0.0    0.0
+         getNextDirection                        Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:(37,1)-(48,41)                3355          2    0.0    0.0     0.0    0.0
+    findPaths.isFree                             Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:7-155                      3342          3    0.0    0.0     0.0    0.0
+     findPaths.isFree.\                          Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:82:65-142                     3343          3    0.0    0.0     0.0    0.0
+    findPaths.toEdgePieces.\                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:83:40-67                      3527          3    0.0    0.0     0.0    0.0
+    findPaths.toFreePieces.\                     Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:84:40-67                      3326          3    0.0    0.0     0.0    0.0
+    findPaths.completedPaths.\                   Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:86:39-129                     3530          1    0.0    0.0     0.0    0.0
+   findPaths.isEdge                              Puzzles.TrainTracks               src/Puzzles/TrainTracks.hs:81:7-78                       3528          3    0.0    0.0     0.0    0.0
+  runFisherYatesIO                               Effects.Shuffle                   src/Effects/Shuffle.hs:(27,1)-(28,37)                    3159          0    0.4    0.6     0.9    2.1
+   >>=                                           Polysemy.Internal                 src/Polysemy/Internal.hs:(266,3)-(268,18)                3185      76872    0.0    0.0     0.0    0.0
+   runFisherYatesIO.\                            Effects.Shuffle                   src/Effects/Shuffle.hs:28:17-37                          3187      76872    0.4    1.3     0.4    1.5
+    shuffle                                      System.Random.Shuffle.FisherYates src/System/Random/Shuffle/FisherYates.hs:18:1-29         3191      76872    0.0    0.2     0.0    0.2
+     inIO                                        System.Random.Rando.Internal      src/System/Random/Rando/Internal.hs:(10,1)-(13,9)        3192      76872    0.0    0.0     0.0    0.0

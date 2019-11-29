@@ -241,6 +241,21 @@
                 ]
             }
         },
+        "/puzzles/train-tracks/random": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TrainTracks"
+                        },
+                        "description": ""
+                    }
+                },
+                "produces": [
+                    "application/json;charset=utf-8"
+                ]
+            }
+        },
         "/puzzles/crosswords/{id}": {
             "get": {
                 "responses": {

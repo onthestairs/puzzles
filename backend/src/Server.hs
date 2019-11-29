@@ -5,12 +5,14 @@ module Server where
 import qualified Data.Map.Strict as M
 import Effects.KVS
 import Effects.PuzzleCRUD
+import Effects.Shuffle
 import qualified Network.Wai.Handler.Warp as W
 import Network.Wai.Middleware.Cors
 import Polysemy
 import Polysemy.Error
 import Polysemy.State
 import Polysemy.Trace
+import qualified Prng
 import Servant
 import Servant.Server
 import Server.Crossword
@@ -77,26 +79,28 @@ initTrainTracks =
 initCrosswords :: M.Map Int Crossword
 initCrosswords = (M.singleton 1 (Crossword 100))
 
-type API = "puzzles" :> ("train-tracks" :> (PuzzleAPI TrainTracks) :<|> "crosswords" :> (PuzzleAPI Crossword))
+type API = "puzzles" :> ("train-tracks" :> (PuzzleAPI TrainTracks :<|> RandomTrainTrack) :<|> "crosswords" :> (PuzzleAPI Crossword))
 
 api :: Proxy API
 api = Proxy
 
-apiServer = puzzleServer :<|> puzzleServer
+apiServer = (puzzleServer :<|> randomTrainTrackServer) :<|> puzzleServer
 
 createApp :: IO Application
 createApp = do
   kvsIORefTrainTracks <- newIORef initTrainTracks
   kvsIORefCrossword <- newIORef initCrosswords
-  return (serve api $ hoistServer api (\sem -> interpretServer sem kvsIORefTrainTracks kvsIORefCrossword) apiServer)
+  genIORef <- newIORef (Prng.mkState 111 222 333 444)
+  return (serve api $ hoistServer api (\sem -> interpretServer sem kvsIORefTrainTracks kvsIORefCrossword genIORef) apiServer)
   where
-    interpretServer sem kvsIORefTrainTracks kvsIORefCrossword =
+    interpretServer sem kvsIORefTrainTracks kvsIORefCrossword genIORef =
       sem
         & withTrace
         & traceToIO
         & runServerWithIORef kvsIORefTrainTracks
         & withTrace
         & traceToIO
+        & runShuffle3StateIORef genIORef
         & runServerWithIORef kvsIORefCrossword
         & runError @PuzzleError
         & runM

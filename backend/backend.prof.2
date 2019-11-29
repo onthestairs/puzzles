@@ -1,0 +1,201 @@
+	Fri Nov 29 13:21 2019 Time and Allocation Profiling Report  (Final)
+
+	   backend +RTS -N -p -RTS
+
+	total time  =        0.00 secs   (1 ticks @ 1000 us, 4 processors)
+	total alloc =     138,160 bytes  (excludes profiling overheads)
+
+COST CENTRE         MODULE            SRC                                         %time %alloc
+
+MAIN                MAIN              <built-in>                                  100.0   59.7
+CAF                 GHC.IO.Handle.FD  <entire-module>                               0.0   25.1
+CAF                 GHC.IO.Exception  <entire-module>                               0.0    1.4
+CAF                 GHC.IO.Encoding   <entire-module>                               0.0    2.4
+fmap.\              Polysemy.Internal src/Polysemy/Internal.hs:250:32-43            0.0    1.4
+>>=.\               Polysemy.Internal src/Polysemy/Internal.hs:(266,30)-(268,18)    0.0    2.5
+shuffle3State.\.gen Effects.Shuffle   src/Effects/Shuffle.hs:36:9-35                0.0    2.2
+
+
+                                                                                                                                   individual      inherited
+COST CENTRE                         MODULE                    SRC                                               no.     entries  %time %alloc   %time %alloc
+
+MAIN                                MAIN                      <built-in>                                        367          0  100.0   59.7   100.0  100.0
+ CAF                                Control.Exception.Base    <entire-module>                                   513          0    0.0    0.9     0.0    0.9
+ CAF                                GHC.Conc.Signal           <entire-module>                                   468          0    0.0    0.5     0.0    0.5
+ CAF                                GHC.Conc.Sync             <entire-module>                                   467          0    0.0    0.6     0.0    0.6
+ CAF                                GHC.IO.Encoding           <entire-module>                                   449          0    0.0    2.4     0.0    2.4
+ CAF                                GHC.IO.Encoding.Iconv     <entire-module>                                   447          0    0.0    0.1     0.0    0.1
+ CAF                                GHC.IO.Exception          <entire-module>                                   441          0    0.0    1.4     0.0    1.4
+ CAF                                GHC.IO.Handle.FD          <entire-module>                                   438          0    0.0   25.1     0.0   25.1
+ CAF                                GHC.Event.Poll            <entire-module>                                   384          0    0.0    0.0     0.0    0.0
+ CAF                                GHC.Event.Thread          <entire-module>                                   383          0    0.0    0.9     0.0    0.9
+ CAF:$ssend1                        Puzzles.TrainTracks       <no location info>                                713          0    0.0    0.0     0.0    0.0
+  finder                            Polysemy.Internal.Union   src/Polysemy/Internal/Union.hs:191:3-13           774          1    0.0    0.0     0.0    0.0
+ CAF:ds_rkOa                        Effects.Shuffle           <no location info>                                725          0    0.0    0.0     0.0    0.0
+  shuffle3State                     Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             876          0    0.0    0.0     0.0    0.0
+   shuffle3State.\                  Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            877          0    0.0    0.0     0.0    0.0
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         878          0    0.0    0.0     0.0    0.0
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        879          0    0.0    0.0     0.0    0.0
+      shuffle3State.\.(...)         Effects.Shuffle           src/Effects/Shuffle.hs:36:9-35                    880          1    0.0    0.0     0.0    0.0
+ CAF:getInitialStateT1              Polysemy.Internal.Tactics <no location info>                                581          0    0.0    0.0     0.0    0.0
+  getInitialStateT                  Polysemy.Internal.Tactics src/Polysemy/Internal/Tactics.hs:90:1-63          847          1    0.0    0.0     0.0    0.0
+ CAF:getInitialStateT2              Polysemy.Internal.Tactics <no location info>                                580          0    0.0    0.0     0.0    0.0
+  getInitialStateT                  Polysemy.Internal.Tactics src/Polysemy/Internal/Tactics.hs:90:1-63          852          0    0.0    0.0     0.0    0.0
+ CAF:getInitialStateT7              Polysemy.Internal.Tactics <no location info>                                579          0    0.0    0.0     0.0    0.0
+  finder                            Polysemy.Internal.Union   src/Polysemy/Internal/Union.hs:191:3-13           853          1    0.0    0.0     0.0    0.0
+ CAF:lvl2_rkOc                      Effects.Shuffle           <no location info>                                727          0    0.0    0.0     0.0    0.0
+  shuffle3State                     Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             866          0    0.0    0.0     0.0    0.0
+   shuffle3State.\                  Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            867          0    0.0    0.0     0.0    0.0
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         868          0    0.0    0.0     0.0    0.0
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        869          0    0.0    0.0     0.0    0.0
+      shuffle3State.\.i             Effects.Shuffle           src/Effects/Shuffle.hs:38:9-37                    870          0    0.0    0.0     0.0    0.0
+ CAF:main1                          Main                      <no location info>                                732          0    0.0    0.0     0.0    0.0
+  main                              Main                      app/Main.hs:7:1-12                                734          1    0.0    0.0     0.0    0.0
+ CAF:makePaths3                     Puzzles.TrainTracks       <no location info>                                692          0    0.0    0.0     0.0    0.0
+  makePaths                         Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         747          0    0.0    0.0     0.0    0.0
+   makePaths.startingPathPiece      Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:36:7-125               748          1    0.0    0.0     0.0    0.0
+ CAF:makePaths4                     Puzzles.TrainTracks       <no location info>                                691          0    0.0    0.0     0.0    0.1
+  makePaths                         Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         749          0    0.0    0.0     0.0    0.1
+   makePaths.startingPathPiece      Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:36:7-125               750          0    0.0    0.1     0.0    0.1
+ CAF:makePaths_startingOutDirection Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:34:7-26                688          0    0.0    0.0     0.0    0.0
+  makePaths                         Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         755          0    0.0    0.0     0.0    0.0
+   makePaths.startingOutDirection   Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:34:7-34                756          1    0.0    0.0     0.0    0.0
+ CAF:makePaths_startingPiece        Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:33:7-19                689          0    0.0    0.0     0.0    0.0
+  makePaths                         Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         751          0    0.0    0.0     0.0    0.0
+   makePaths.startingPiece          Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:33:7-29                752          1    0.0    0.0     0.0    0.0
+ CAF:makePaths_startingPosition     Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:32:7-22                690          0    0.0    0.0     0.0    0.0
+  makePaths                         Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         753          0    0.0    0.0     0.0    0.0
+   makePaths.startingPosition       Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:32:7-31                754          1    0.0    0.0     0.0    0.0
+ CAF:runShuffle3State4              Effects.Shuffle           <no location info>                                731          0    0.0    0.0     0.0    0.2
+  runShuffle3State                  Effects.Shuffle           src/Effects/Shuffle.hs:51:1-48                    742          0    0.0    0.0     0.0    0.2
+   shuffle3State                    Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             743          1    0.0    0.0     0.0    0.1
+    shuffle3State.\                 Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            787          0    0.0    0.0     0.0    0.1
+     get                            Polysemy.State            src/Polysemy/State.hs:47:1-15                     788          1    0.0    0.1     0.0    0.1
+     >>=                            Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         824          0    0.0    0.0     0.0    0.0
+      >>=.\                         Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        825          0    0.0    0.0     0.0    0.0
+       put                          Polysemy.State            src/Polysemy/State.hs:47:1-15                     826          1    0.0    0.0     0.0    0.0
+ CAF:runShuffle3State5              Effects.Shuffle           <no location info>                                730          0    0.0    0.0     0.0    0.0
+  finder                            Polysemy.Internal.Union   src/Polysemy/Internal/Union.hs:191:3-13           792          1    0.0    0.0     0.0    0.0
+ CAF:runShuffle3State6              Effects.Shuffle           <no location info>                                729          0    0.0    0.0     0.0    0.0
+  shuffle3State                     Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             836          0    0.0    0.0     0.0    0.0
+   shuffle3State.\                  Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            837          0    0.0    0.0     0.0    0.0
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         838          0    0.0    0.0     0.0    0.0
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        839          0    0.0    0.0     0.0    0.0
+      pure                          Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 840          1    0.0    0.0     0.0    0.0
+ CAF:runShuffle3State7              Effects.Shuffle           <no location info>                                728          0    0.0    0.0     0.0    0.0
+  shuffle3State                     Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             861          0    0.0    0.0     0.0    0.0
+   shuffle3State.\                  Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            862          0    0.0    0.0     0.0    0.0
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         863          0    0.0    0.0     0.0    0.0
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        864          0    0.0    0.0     0.0    0.0
+      shuffle3State.\.i             Effects.Shuffle           src/Effects/Shuffle.hs:38:9-37                    865          1    0.0    0.0     0.0    0.0
+ CAF:runShuffle3State_gen           Effects.Shuffle           src/Effects/Shuffle.hs:36:16-18                   724          0    0.0    0.0     0.0    2.2
+  shuffle3State                     Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             881          0    0.0    0.0     0.0    2.2
+   shuffle3State.\                  Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            882          0    0.0    0.0     0.0    2.2
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         883          0    0.0    0.0     0.0    2.2
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        884          0    0.0    0.0     0.0    2.2
+      shuffle3State.\.gen           Effects.Shuffle           src/Effects/Shuffle.hs:36:9-35                    885          1    0.0    2.2     0.0    2.2
+ CAF:test1                          Puzzles.TrainTracks       <no location info>                                720          0    0.0    0.0     0.0    0.0
+  test2                             Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(117,1)-(125,60)       735          1    0.0    0.0     0.0    0.0
+ CAF:test8                          Puzzles.TrainTracks       <no location info>                                716          0    0.0    0.0     0.0    0.9
+  test2                             Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(117,1)-(125,60)       745          0    0.0    0.0     0.0    0.9
+   makePaths                        Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         746          1    0.0    0.1     0.0    0.9
+    findPaths                       Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(80,1)-(91,36)         757          1    0.0    0.6     0.0    0.7
+     >>=                            Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         758          1    0.0    0.0     0.0    0.0
+     fmap                           Polysemy.Internal         src/Polysemy/Internal.hs:250:3-43                 767          1    0.0    0.0     0.0    0.0
+     shuffle3                       Effects.Shuffle           src/Effects/Shuffle.hs:18:1-18                    770          1    0.0    0.1     0.0    0.1
+ CAF:test9                          Puzzles.TrainTracks       <no location info>                                719          0    0.0    0.0     0.0    0.0
+  test2                             Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(117,1)-(125,60)       737          0    0.0    0.0     0.0    0.0
+   runShuffle3State                 Effects.Shuffle           src/Effects/Shuffle.hs:51:1-48                    738          1    0.0    0.0     0.0    0.0
+ CAF:word_rkOb                      Effects.Shuffle           src/Effects/Shuffle.hs:36:10-13                   726          0    0.0    0.0     0.0    0.0
+  shuffle3State                     Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             871          0    0.0    0.0     0.0    0.0
+   shuffle3State.\                  Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            872          0    0.0    0.0     0.0    0.0
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         873          0    0.0    0.0     0.0    0.0
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        874          0    0.0    0.0     0.0    0.0
+      shuffle3State.\.word          Effects.Shuffle           src/Effects/Shuffle.hs:36:9-35                    875          1    0.0    0.0     0.0    0.0
+ test2                              Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(117,1)-(125,60)       736          0    0.0    0.0     0.0    4.9
+  makePaths                         Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         759          0    0.0    0.0     0.0    1.1
+   findPaths                        Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(80,1)-(91,36)         760          0    0.0    0.0     0.0    1.1
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         761          1    0.0    0.0     0.0    0.1
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        762          1    0.0    0.1     0.0    0.1
+      runSem                        Polysemy.Internal         src/Polysemy/Internal.hs:195:5-10                 857          0    0.0    0.0     0.0    0.0
+    fmap                            Polysemy.Internal         src/Polysemy/Internal.hs:250:3-43                 768          1    0.0    0.0     0.0    0.0
+     fmap.\                         Polysemy.Internal         src/Polysemy/Internal.hs:250:32-43                769          1    0.0    0.0     0.0    0.0
+    shuffle3                        Effects.Shuffle           src/Effects/Shuffle.hs:18:1-18                    771          0    0.0    0.0     0.0    0.9
+     runShuffle3State               Effects.Shuffle           src/Effects/Shuffle.hs:51:1-48                    772          0    0.0    0.0     0.0    0.9
+      shuffle3State                 Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             773          0    0.0    0.2     0.0    0.9
+       >>=                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         775          5    0.0    0.0     0.0    0.3
+        >>=.\                       Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        780          3    0.0    0.2     0.0    0.3
+         runSem                     Polysemy.Internal         src/Polysemy/Internal.hs:195:5-10                 820          1    0.0    0.0     0.0    0.0
+          shuffle3State.\           Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            822          0    0.0    0.0     0.0    0.0
+         shuffle3State.\            Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            786          0    0.0    0.0     0.0    0.0
+       shuffle3State.\              Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            784          1    0.0    0.0     0.0    0.5
+        >>=                         Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         785          2    0.0    0.0     0.0    0.2
+         >>=.\                      Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        821          0    0.0    0.2     0.0    0.2
+          pure                      Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 841          1    0.0    0.0     0.0    0.0
+          put                       Polysemy.State            src/Polysemy/State.hs:47:1-15                     827          0    0.0    0.0     0.0    0.0
+        get                         Polysemy.State            src/Polysemy/State.hs:47:1-15                     789          0    0.0    0.0     0.0    0.2
+         >>=                        Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         790          0    0.0    0.0     0.0    0.2
+          >>=.\                     Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        791          0    0.0    0.2     0.0    0.2
+  runShuffle3State                  Effects.Shuffle           src/Effects/Shuffle.hs:51:1-48                    739          0    0.0    0.0     0.0    3.8
+   fmap                             Polysemy.Internal         src/Polysemy/Internal.hs:250:3-43                 740          3    0.0    0.1     0.0    2.9
+    fmap.\                          Polysemy.Internal         src/Polysemy/Internal.hs:250:32-43                741          4    0.0    1.1     0.0    2.8
+     >>=                            Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         807          2    0.0    0.0     0.0    0.0
+     runSem                         Polysemy.Internal         src/Polysemy/Internal.hs:195:5-10                 801          2    0.0    0.0     0.0    0.2
+      >>=                           Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         808          0    0.0    0.0     0.0    0.2
+       >>=.\                        Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        809          2    0.0    0.2     0.0    0.2
+        pure                        Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 815          0    0.0    0.0     0.0    0.0
+        shuffle3State               Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             811          0    0.0    0.0     0.0    0.0
+         shuffle3State.\            Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            812          0    0.0    0.0     0.0    0.0
+          get                       Polysemy.State            src/Polysemy/State.hs:47:1-15                     813          0    0.0    0.0     0.0    0.0
+      shuffle3State                 Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             802          0    0.0    0.0     0.0    0.0
+       shuffle3State.\              Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            803          0    0.0    0.0     0.0    0.0
+        >>=                         Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         832          0    0.0    0.0     0.0    0.0
+         >>=.\                      Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        833          0    0.0    0.0     0.0    0.0
+        get                         Polysemy.State            src/Polysemy/State.hs:47:1-15                     804          0    0.0    0.0     0.0    0.0
+         >>=                        Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         805          0    0.0    0.0     0.0    0.0
+          >>=.\                     Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        806          0    0.0    0.0     0.0    0.0
+     pure                           Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 814          1    0.0    0.0     0.0    0.0
+     makePaths                      Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         763          0    0.0    0.0     0.0    1.5
+      findPaths                     Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(80,1)-(91,36)         764          0    0.0    0.0     0.0    1.5
+       >>=                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         765          2    0.0    0.0     0.0    1.5
+        >>=.\                       Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        766          4    0.0    1.1     0.0    1.5
+         runSem                     Polysemy.Internal         src/Polysemy/Internal.hs:195:5-10                 810         10    0.0    0.0     0.0    0.3
+          pure                      Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 818          5    0.0    0.2     0.0    0.2
+          return                    Polysemy.Internal         src/Polysemy/Internal.hs:263:3-15                 817          2    0.0    0.0     0.0    0.0
+          shuffle3State             Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             823          0    0.0    0.0     0.0    0.0
+           shuffle3State.\          Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            843          0    0.0    0.0     0.0    0.0
+         findPaths.toFreePieces     Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:88:7-83                859          1    0.0    0.0     0.0    0.0
+         tripleToList               Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:77:1-34                860          1    0.0    0.0     0.0    0.0
+         pure                       Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 816          0    0.0    0.0     0.0    0.0
+          shuffle3State             Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             844          0    0.0    0.0     0.0    0.0
+           shuffle3State.\          Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            845          0    0.0    0.0     0.0    0.0
+         shuffle3State              Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             779          0    0.0    0.0     0.0    0.1
+          pure                      Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 855          0    0.0    0.1     0.0    0.1
+          shuffle3State.\           Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            799          0    0.0    0.0     0.0    0.0
+           get                      Polysemy.State            src/Polysemy/State.hs:47:1-15                     800          0    0.0    0.0     0.0    0.0
+       shuffle3                     Effects.Shuffle           src/Effects/Shuffle.hs:18:1-18                    776          0    0.0    0.0     0.0    0.0
+   shuffle3State                    Effects.Shuffle           src/Effects/Shuffle.hs:(33,1)-(39,23)             744          0    0.0    0.1     0.0    0.9
+    >>=                             Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         777          2    0.0    0.0     0.0    0.4
+     >>=.\                          Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        778          5    0.0    0.4     0.0    0.4
+      runSem                        Polysemy.Internal         src/Polysemy/Internal.hs:195:5-10                 835          2    0.0    0.0     0.0    0.0
+       pureT                        Polysemy.Internal.Tactics src/Polysemy/Internal/Tactics.hs:(128,1)-(130,20) 846          1    0.0    0.0     0.0    0.0
+      getInitialStateT              Polysemy.Internal.Tactics src/Polysemy/Internal/Tactics.hs:90:1-63          848          0    0.0    0.0     0.0    0.0
+       makePaths                    Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         849          0    0.0    0.0     0.0    0.0
+        findPaths                   Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(80,1)-(91,36)         850          0    0.0    0.0     0.0    0.0
+         shuffle3                   Effects.Shuffle           src/Effects/Shuffle.hs:18:1-18                    851          0    0.0    0.0     0.0    0.0
+      makePaths                     Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(29,1)-(37,80)         781          0    0.0    0.0     0.0    0.0
+       findPaths                    Puzzles.TrainTracks       src/Puzzles/TrainTracks.hs:(80,1)-(91,36)         782          0    0.0    0.0     0.0    0.0
+        shuffle3                    Effects.Shuffle           src/Effects/Shuffle.hs:18:1-18                    783          0    0.0    0.0     0.0    0.0
+    pure                            Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 854          1    0.0    0.0     0.0    0.0
+    shuffle3State.\                 Effects.Shuffle           src/Effects/Shuffle.hs:(34,18)-(39,23)            793          0    0.0    0.0     0.0    0.3
+     >>=                            Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         828          0    0.0    0.0     0.0    0.2
+      >>=.\                         Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        829          0    0.0    0.0     0.0    0.2
+       fmap                         Polysemy.Internal         src/Polysemy/Internal.hs:250:3-43                 830          0    0.0    0.0     0.0    0.2
+        fmap.\                      Polysemy.Internal         src/Polysemy/Internal.hs:250:32-43                831          0    0.0    0.2     0.0    0.2
+         pure                       Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 834          1    0.0    0.0     0.0    0.0
+       pure                         Polysemy.Internal         src/Polysemy/Internal.hs:255:3-31                 842          0    0.0    0.1     0.0    0.1
+     get                            Polysemy.State            src/Polysemy/State.hs:47:1-15                     794          0    0.0    0.0     0.0    0.1
+      >>=                           Polysemy.Internal         src/Polysemy/Internal.hs:(266,3)-(268,18)         795          0    0.0    0.0     0.0    0.1
+       >>=.\                        Polysemy.Internal         src/Polysemy/Internal.hs:(266,30)-(268,18)        796          0    0.0    0.0     0.0    0.1
+        fmap                        Polysemy.Internal         src/Polysemy/Internal.hs:250:3-43                 797          0    0.0    0.0     0.0    0.1
+         fmap.\                     Polysemy.Internal         src/Polysemy/Internal.hs:250:32-43                798          0    0.0    0.1     0.0    0.1

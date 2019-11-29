@@ -6,9 +6,11 @@ import qualified Data.Map.Strict as M
 import Data.Proxy
 import Effects.KVS
 import Effects.PuzzleCRUD
+import Effects.Shuffle
 import Polysemy
 import Polysemy.Error
 import Polysemy.State
+import qualified Puzzles.TrainTracks as TrainTracks
 import Servant
 import Server.TrainTracks
 
@@ -34,3 +36,16 @@ runServerWithIORef ref sem =
   sem & runPuzzleCrudAsKVS
     & runKvsOnMapState
     & runStateIORef ref
+
+type RandomTrainTrack = "random" :> Get '[JSON] TrainTracks
+
+randomTrainTrackServer ::
+  (Members '[Shuffle3, Error PuzzleError] r) =>
+  ServerT (RandomTrainTrack) (Sem r)
+randomTrainTrackServer = do
+  let rows = 5
+  let cols = 5
+  maybePath <- TrainTracks.makeOnePath rows cols ((> 18) . length)
+  case maybePath of
+    Just path -> pure $ pathToTrainTracks rows cols path
+    Nothing -> throw $ HTTP404 "couldnt find puzzle of that size"
