@@ -103,16 +103,6 @@ makeGridFromPath rows cols ps =
   let positionMap = M.fromList [(position, toChar piece) | (PathPiece piece position _) <- ps]
    in unlines [toText [M.findWithDefault '.' (row, col) positionMap | col <- [0 .. cols -1]] | row <- [0 .. rows -1]]
 
--- test2 =  makePaths 2 2
-
--- test :: IO ()
--- test = do
---   let rows = 4
---   let cols = 4
---   paths <- runM . runShuffle3State gen $ makePaths rows cols
---   forM_ paths $ \path ->
---     putTextLn (makeGridFromPath rows cols path)
-
 test2 :: IO ()
 test2 = do
   let rows = 6
