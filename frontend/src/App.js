@@ -52,7 +52,9 @@ const App = () => {
 };
 
 const RandomTrainTracksApp = () => {
-  const { loading, data: randomTrainTracks } = useGetpuzzlesTrainTracksRandom();
+  const { loading, data: randomTrainTracks } = useGetpuzzlesTrainTracksRandom({
+    queryParams: { rows: 5, cols: 5 }
+  });
   if (loading) {
     return "loading...";
   }

@@ -244,6 +244,9 @@
         "/puzzles/train-tracks/random": {
             "get": {
                 "responses": {
+                    "400": {
+                        "description": "Invalid `cols` or `rows`"
+                    },
                     "200": {
                         "schema": {
                             "$ref": "#/definitions/TrainTracks"
@@ -253,6 +256,24 @@
                 },
                 "produces": [
                     "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "maximum": 9223372036854775807,
+                        "minimum": -9223372036854775808,
+                        "required": false,
+                        "in": "query",
+                        "name": "rows",
+                        "type": "integer"
+                    },
+                    {
+                        "maximum": 9223372036854775807,
+                        "minimum": -9223372036854775808,
+                        "required": false,
+                        "in": "query",
+                        "name": "cols",
+                        "type": "integer"
+                    }
                 ]
             }
         },

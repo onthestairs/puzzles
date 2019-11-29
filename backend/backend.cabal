@@ -26,7 +26,7 @@ library
                        Prelude
                        Effects.KVS
                        Effects.PuzzleCRUD
-                       Effects.Shuffle
+                       Effects.Random
                        Server.Crossword
                        Server.Puzzles
                        Server.TrainTracks

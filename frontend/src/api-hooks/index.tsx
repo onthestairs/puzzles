@@ -103,20 +103,22 @@ export type UseGetpuzzlesTrainTracksIdProps = Omit<UseGetProps<TrainTracks, void
 export const useGetpuzzlesTrainTracksId = ({id, ...props}: UseGetpuzzlesTrainTracksIdProps) => useGet<TrainTracks, void, void>(`/puzzles/train-tracks/${id}`, props);
 
 
-export type GetpuzzlesTrainTracksRandomProps = Omit<GetProps<TrainTracks, unknown, void>, "path">;
+export interface GetpuzzlesTrainTracksRandomQueryParams {rows?: number; cols?: number}
+
+export type GetpuzzlesTrainTracksRandomProps = Omit<GetProps<TrainTracks, void, GetpuzzlesTrainTracksRandomQueryParams>, "path">;
 
 
 export const GetpuzzlesTrainTracksRandom = (props: GetpuzzlesTrainTracksRandomProps) => (
-  <Get<TrainTracks, unknown, void>
+  <Get<TrainTracks, void, GetpuzzlesTrainTracksRandomQueryParams>
     path={`/puzzles/train-tracks/random`}
     {...props}
   />
 );
 
-export type UseGetpuzzlesTrainTracksRandomProps = Omit<UseGetProps<TrainTracks, void>, "path">;
+export type UseGetpuzzlesTrainTracksRandomProps = Omit<UseGetProps<TrainTracks, GetpuzzlesTrainTracksRandomQueryParams>, "path">;
 
 
-export const useGetpuzzlesTrainTracksRandom = (props: UseGetpuzzlesTrainTracksRandomProps) => useGet<TrainTracks, unknown, void>(`/puzzles/train-tracks/random`, props);
+export const useGetpuzzlesTrainTracksRandom = (props: UseGetpuzzlesTrainTracksRandomProps) => useGet<TrainTracks, void, GetpuzzlesTrainTracksRandomQueryParams>(`/puzzles/train-tracks/random`, props);
 
 
 export type GetpuzzlesCrosswordsIdProps = Omit<GetProps<Crossword, void, void>, "path"> & {id: number};

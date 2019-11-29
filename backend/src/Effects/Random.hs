@@ -54,34 +54,3 @@ runRandomState s = fmap snd . runState s . randomToState
 
 runRandomStateIORef :: (Member (Embed IO) r) => IORef Prng.State -> Sem (Random ': r) a -> Sem r a
 runRandomStateIORef s = runStateIORef s . randomToState
--- runShuffle3State :: Prng.State -> Sem (Random ': r) a -> Sem r a
--- runShuffle3State s = fmap snd . runState s . reinterpret \case
---   Shuffle3 xs -> do
---     gen <- get
---     let (word, gen') = Prng.next gen
---     put gen'
---     let i = fromIntegral word `mod` 6
---     pure $ getPerm xs i
---   Pick xs -> do
---     let l = length xs
---     gen <- get
---     let (word, gen') = Prng.next gen
---     put gen'
---     let i = fromIntegral word `mod` l
---      pure $ viaNonEmpty head (take i xs)
-
--- runShuffle3StateIORef :: (Member (Embed IO) r) => IORef Prng.State -> Sem (Random ': r) a -> Sem r a
--- runShuffle3StateIORef s = runStateIORef s . reinterpret \case
---   Shuffle3 xs -> do
---     gen <- get
---     let (word, gen') = Prng.next gen
---     put gen'
---     let i = fromIntegral word `mod` 6
---     pure $ getPerm xs i
---   Pick xs -> do
---     let l = length xs
---     gen <- get
---     let (word, gen') = Prng.next gen
---     put gen'
---     let i = fromIntegral word `mod` l
---     pure $ viaNonEmpty head (take i xs)

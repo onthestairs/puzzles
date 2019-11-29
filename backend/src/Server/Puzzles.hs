@@ -37,15 +37,15 @@ runServerWithIORef ref sem =
     & runKvsOnMapState
     & runStateIORef ref
 
-type RandomTrainTrack = "random" :> Get '[JSON] TrainTracks
+type RandomTrainTrack = "random" :> QueryParam "rows" Int :> QueryParam "cols" Int :> Get '[JSON] TrainTracks
 
 randomTrainTrackServer ::
   (Members '[Random, Error PuzzleError] r) =>
   ServerT (RandomTrainTrack) (Sem r)
-randomTrainTrackServer = do
-  let rows = 5
-  let cols = 5
-  maybePath <- TrainTracks.makeOnePath rows cols ((> 18) . length)
+randomTrainTrackServer maybeRows maybeCols = do
+  let rows = fromMaybe 5 maybeRows
+  let cols = fromMaybe 5 maybeCols
+  maybePath <- TrainTracks.makeOnePath (traceShowId rows) (traceShowId cols) ((> 18) . length)
   case maybePath of
     Just path -> pure $ pathToTrainTracks rows cols path
     Nothing -> throw $ HTTP404 "couldnt find puzzle of that size"

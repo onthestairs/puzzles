@@ -4,4 +4,4 @@ import Puzzles.TrainTracks
 import Server
 
 main :: IO ()
-main = test2
+main = runServer
